@@ -5,20 +5,19 @@ https://rapidapi.com/api-sports/api/api-football-beta
 const express = require('express');
 const app = express();
 const path = require('path');
+const favicon = require('serve-favicon');
+
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
+app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
-app.get('/', (req, res) =>{
-	res.render('home')
-
-request(options, function (error, response, body) {
-	if (error) throw new Error(error);
-
-	console.log(body);
-});
-
-
+app.get('/', function(req, res){	
+	res.render('home');
+})
+app.get('/league-tables', function(req, res){
+	res.render('league-tables');
 })
 
 app.listen(3000, () => {
