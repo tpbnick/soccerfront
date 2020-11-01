@@ -2,7 +2,7 @@
 <body>
   <%- include('header.ejs'); %>
   <div style="text-align: center;font-size:larger;padding-top: 35px;">
-    <label for="league">Choose League :  </label>
+    <label for="league" style="color: white;">Choose League :  </label>
     <select id="league" name="league" class="btn btn-secondary dropdown-toggle">
         <option value="ChampionsLeague"> Champions League</option> 
         <option value="EuropaLeague"> Europa League</option> 
@@ -16,7 +16,7 @@
     </select>
   </div>
 	<div class="container-fluid">
-        <div class="card" id="card_league_table" style="background: rgb(255, 255, 255, 1);">
+        <div class="card" id="card_league_table" style="background: rgb(255, 255, 255, 1); box-shadow: 5px 5px 5px #374452; border-radius: 15px;">
 			      <div class="card-header" id="league_logo" style="text-align: left;display: inline-flex;">
                 
             </div>
