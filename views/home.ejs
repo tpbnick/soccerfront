@@ -174,16 +174,16 @@
     if(data.length == 0){
       return null;
     }
-    let content="<br/><h5>" + league_name + "</h5><hr style='height:2px;border-width:0;color:gray;background-color:gray'><table class='table table-bordered table-secondary' style='width:100%;'>";
+    let content="<br/><h5>" + league_name + "</h5><hr style='height:2px;border-width:0;color:gray;background-color:gray'><table class='table table-secondary table-bordered' style='width:100%;'>";
     
     data.forEach(e => {
     var goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
     var goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam;
     content += "<tr>"+
                   "<td style='width:15%;'>" + e.statusShort + "</td>"+
-                  "<td style='width:35%'>" + e.homeTeam.team_name + "</td>" + 
+                  "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
                   "<td style='width:15%%'>" + goals_HomeTeam + " - " +goals_AwayTeam +"</td>" + 
-                  "<td style='width:35%'>" + e.awayTeam.team_name + "</td>"+
+                  "<td style='width:35%;text-align:left;'>" + "<img width='30' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
                 "</tr>";
     });
 

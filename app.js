@@ -20,6 +20,6 @@ app.get('/league-tables', function(req, res){
 	res.render('league-tables');
 })
 
-app.listen(3000, () => {
-	console.log('Serving on port 3000')
+app.listen(8080, () => {
+	console.log('Serving on port 8080')
 })

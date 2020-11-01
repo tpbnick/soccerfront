@@ -81,7 +81,7 @@
       success: function(res) { 
         if(res.api.results == 0){
           $.ajax({
-            url:"https://api-football-v1.p.rapidapi.com/v2/leagues/country/Germany/"+(yyyy-1),
+            url: "https://api-football-v1.p.rapidapi.com/v2/leagues/country/"+country+"/"+(yyyy-1),
             type: "GET",
             beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
             success:function(res){
