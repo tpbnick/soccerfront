@@ -101,6 +101,9 @@ footer {
     margin: 35px auto 40px;
   }
 }
+.table{
+  background-color: white;
+}
 tr{
 text-align: center;
 font-size: larger;
