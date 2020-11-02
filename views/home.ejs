@@ -180,7 +180,7 @@
     var goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
     var goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam;
     content += "<tr>"+
-                  "<td style='width:15%;'>" + e.statusShort + "</td>"+
+                  "<td style='width:15%;'>" + e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" + "</td>"+
                   "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
                   "<td style='width:15%%'>" + goals_HomeTeam + " - " +goals_AwayTeam +"</td>" + 
                   "<td style='width:35%;text-align:left;'>" + "<img width='30' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
