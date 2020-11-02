@@ -2,10 +2,10 @@
 <strong>The Front Page of Soccer</strong>
 Updated 11/2/2020
 
-Current Homepage View:
+Current Homepage View:<br>
 <img class="image" src="images/home.png" width="50%" height="50%">
 
-Current League Table View:
+Current League Table View:<br>
 <img class="image" src="images/league-table.png" width="50%" height="50%">
 
 <h1>Overview</h1>
