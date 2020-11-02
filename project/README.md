@@ -1,12 +1,19 @@
-# soccerfront
+# Soccerfront
+<style>
+.image{
+	height:50%;
+	width: 50%;
+}
+</style>
+
 <strong>The Front Page of Soccer</strong>
 Updated 11/2/2020
 
 Current Homepage View:
-<img src="images/home.png">
+<img class="image" src="images/home.png">
 
 Current League Table View:
-<img src="images/league-table.png">
+<img class="image" src="images/league-table.png">
 
 <h1>Overview</h1>
 This web application is run in Nodejs using the Express framework.  The application is built using HTML, CSS, and JavaScript. 
