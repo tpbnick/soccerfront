@@ -2,7 +2,7 @@
 <body>
   <%- include('header.ejs'); %>
 	<div class="container-fluid">
-		<div class="card" id="card_home" style="background: rgb(255, 255, 255, 1); box-shadow: 5px 5px 5px #374452; border-radius: 15px;">
+		<div class="card" id="card_home" style="background: rgb(255, 255, 255, 1); box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 15px;">
 			<div class="card-header" style="text-align: center;">
         <h2>Live Scores</h2>
       </div>
@@ -104,7 +104,7 @@
     $("#date_list").html(content_date);
 
     $.ajax({
-      url: "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/"+today,
+      url: "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/"+today+"?timezone=America/New_York",
       type: "GET",
       beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
       success: function(res) { 
@@ -120,7 +120,7 @@
     $('#select_date').change(function(){
         var date = this.value;
         $.ajax({
-          url: "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/"+date,
+          url: "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/"+date+"?timezone=America/New_York",
           type: "GET",
           beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
           success: function(res) { 
@@ -179,8 +179,19 @@
     data.forEach(e => {
     var goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
     var goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam;
+    var gameDate = e.event_date.slice(11, 16);
+    var gameTime;
+    if (e.statusShort == "NS"){
+      gameTime = gameDate + "&nbsp;" + "<sup style='font-size:10px'>(EST)</sup>";
+    } else if (e.statusShort == "FT"){
+      gameTime = e.statusShort;
+    } else if (e.statusShort == "HT"){
+      gameTime = e.statusShort +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
+    } else {
+      gameTime = e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
+    }
     content += "<tr>"+
-                  "<td style='width:15%;'>" + e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" + "</td>"+
+                  "<td style='width:15%;'>" + gameTime + "</td>"+
                   "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
                   "<td style='width:15%%'>" + goals_HomeTeam + " - " +goals_AwayTeam +"</td>" + 
                   "<td style='width:35%;text-align:left;'>" + "<img width='30' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+

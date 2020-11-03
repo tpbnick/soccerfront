@@ -31,7 +31,7 @@ footer {
 }
 
 .blink_me {
-  animation: blinker 2s linear infinite;
+  animation: blinker 3s linear infinite;
 }
 
 @keyframes blinker {  
@@ -92,13 +92,13 @@ footer {
 
 @media only screen and (min-width: 768px) {
   #card_home{
-    width: 952px;
-    margin: 100px auto 40px;
+    width: 1000px;
+    margin: 50px auto auto;
     font-size: 14px;
   }
   #card_league_table{
-    width: 952px;
-    margin: 35px auto 40px;
+    width: 1000px;
+    margin: 30px auto auto;
   }
 }
 .table{
