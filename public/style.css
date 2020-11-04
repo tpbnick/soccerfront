@@ -136,3 +136,7 @@ overflow-y: auto;
 ::-webkit-scrollbar-thumb:hover {
   background: #47525e; 
 }
+
+#leftNav > li{
+  padding-left:20px;
+}

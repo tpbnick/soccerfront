@@ -12,7 +12,18 @@
           <a class="nav-link" href="/league-tables">League Tables</a>
         </li>
         </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto" id="timezone" onchange="timezone()">
+        <div class="btn-group">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Timezone
+          </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" id="est">EST (UTC-5)</a>
+              <a class="dropdown-item" id="cst">CST (UTC-6)</a>
+              <a class="dropdown-item" id="mst">MST (UTC-7)</a>
+              <a class="dropdown-item" id="pst">PST (UTC-8)</a>
+            </div>
+        </div>
         <li class="nav-item" id="nav_login">
           <a class="nav-link" href="#">Login</a>
         </li>
