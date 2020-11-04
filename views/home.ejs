@@ -182,7 +182,7 @@
     var gameDate = e.event_date.slice(11, 16);
     var gameTime;
     if (e.statusShort == "NS"){
-      gameTime = gameDate + "&nbsp;" + "<sup style='font-size:10px'>(EST)</sup>";
+      gameTime = gameDate + "&nbsp;";
     } else if (e.statusShort == "FT"){
       gameTime = e.statusShort;
     } else if (e.statusShort == "HT"){
