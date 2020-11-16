@@ -16,6 +16,8 @@ select#select_date{
     border-radius: 2px;
     width: 145px;
     height: 35px;
+    border: 1px solid #ccc;
+
 }
 
 form{
@@ -48,6 +50,7 @@ footer {
   display: inline-block;
   padding: 5px 50px 5px 10px;
   border: 1px solid #ccc;
+  width: 180px;
 }
 
 .dropdown-check-list .anchor:after {
@@ -80,6 +83,8 @@ footer {
 
 .dropdown-check-list ul.items li {
   list-style: none;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .dropdown-check-list.visible .anchor {
