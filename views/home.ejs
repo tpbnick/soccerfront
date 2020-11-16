@@ -14,8 +14,10 @@
         <div id="list1" class="dropdown-check-list" tabindex="2" style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
           <span class="anchor">Choose Leagues</span>
           <ul class="items" style="text-align: left;">
+            <li><input type="checkbox" name="league-type" value="NationsLeague" checked/> Nations League</li> 
             <li><input type="checkbox" name="league-type" value="ChampionsLeague" checked/> Champions League</li> 
-            <li><input type="checkbox" name="league-type" value="EuropaLeague" checked/> Europa League</li> 
+            <li><input type="checkbox" name="league-type" value="EuropaLeague" checked/> Europa League</li>
+            <div class="dropdown-divider"></div> 
             <li><input type="checkbox" name="league-type" value="PremierLeague" checked/> Premier League </li>
             <li><input type="checkbox" name="league-type" value="Bundesliga" checked/> Bundesliga</li>
             <li><input type="checkbox" name="league-type" value="LaLiga" checked/> La Liga</li>
@@ -36,6 +38,9 @@
           }
         </script>
 
+        <div id="NationsLeague" class="NationsLeague">
+
+        </div>
         <div id="ChampionsLeague" class="ChampionsLeague">
 
         </div>
@@ -139,8 +144,12 @@
     let data_league1 = data.filter(item=>item.league.country=="France"&&item.league.name=="Ligue 1");
     let data_PremieraLiga = data.filter(item=>item.league.country=="Portugal"&&item.league.name=="Primeira Liga");
 
+    let data_NationsLeague = data.filter(item=>item.league.country=="World"&&item.league.name=="UEFA Nations League");
     let data_ChampionsLeague = data.filter(item=>item.league.country=="World"&&item.league.name=="UEFA Champions League");
     let data_EuropaLeague = data.filter(item=>item.league.country=="World"&&item.league.name=="UEFA Europa League");
+
+    let content_NationsLeague = getContent_item("Nations League", data_NationsLeague);
+    $("#NationsLeague").html(content_NationsLeague);
 
     let content_ChampionsLeague = getContent_item("Champions League", data_ChampionsLeague);
     $("#ChampionsLeague").html(content_ChampionsLeague);
@@ -187,6 +196,8 @@
       gameTime = e.statusShort;
     } else if (e.statusShort == "HT"){
       gameTime = e.statusShort +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
+    } else if (e.statusShort == "PST"){
+      gameTime = "Postponed"
     } else {
       gameTime = e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
     }
