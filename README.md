@@ -19,6 +19,12 @@ Future features include: expanded leagues, additional match details on row click
 
 <h2>Leagues Supported:<h2>
 
+* Europe  
+
+	* Champions League  
+	* Nations League  
+	* Europa League  
+
 * England
 
 	* Premier League  
@@ -30,7 +36,26 @@ Future features include: expanded leagues, additional match details on row click
 
 	* Bundesliga  
 	* Bundesliga 2  
-	* 3. Liga  
+	* 3 Liga  
 	* DFB Pokal  
 
-*
+* Spain  
+	
+	* La Liga  
+	* La Liga 2  
+	* Copa Del Rey  
+
+* Italy  
+
+	* Serie A  
+	* Serie B  
+	* Coppa Italia  
+
+* Netherlands  
+
+	* Eredivisie  
+	* KNVB Cup  
+
+* Portugal  
+
+	* Primeira Liga
