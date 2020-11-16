@@ -157,7 +157,9 @@ overflow-y: auto;
 }
 
 .dropdown-header{
-  text-align: left;
+  text-align: center;
   color: black;
   font-weight: bold;
+  text-decoration: underline;
+
 }
