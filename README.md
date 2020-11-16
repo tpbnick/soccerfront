@@ -19,6 +19,9 @@ Future features include: expanded leagues, additional match details on row click
 
 <h2>Leagues Supported:<h2>
 
+* World  
+	* International Friendlies  
+
 * Europe  
 
 	* Champions League  
