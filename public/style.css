@@ -140,3 +140,24 @@ overflow-y: auto;
 #leftNav > li{
   padding-left:20px;
 }
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+.dropdown-check-list {         
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.dropdown-header{
+  text-align: left;
+  color: black;
+  font-weight: bold;
+}
