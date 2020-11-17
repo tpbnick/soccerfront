@@ -4,7 +4,7 @@ body{
     background-attachment: fixed;
     background-position: center;
 	background-size: cover;
-	background-image: linear-gradient(to bottom, #3d454f , #5a6470);
+	background-image: linear-gradient(to bottom, #2E3440 , #4C566A);
 
 }
 
@@ -29,7 +29,13 @@ footer {
     height: 50px;
     bottom: 0;
     width: 100%;
-    color: #b8b8b8;
+    color: #D8DEE9;
+}
+
+.bg-dark{
+  background-color: #434C5E;
+  color: white;
+
 }
 
 .blink_me {
@@ -168,4 +174,28 @@ overflow-y: auto;
   font-weight: bold;
   text-decoration: underline;
 
+}
+
+.navbar-dark .navbar-nav .nav-link{
+  color: #7da7db;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+  color: #99c7ff;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link{
+  color: white;
+  border-bottom: 1px solid white;
+  line-height: 25px;
+
+}
+
+
+a {
+  color: white;
+}
+
+a:hover{
+  color: #88C0D0;
 }
