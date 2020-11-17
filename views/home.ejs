@@ -323,13 +323,21 @@
     } else {
       gameTime = e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
     }
+    if (e.league.country == "World"){
+      content += "<tr>"+
+                  "<td style='width:15%;'>" + gameTime + "</td>"+
+                  "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='40' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
+                  "<td style='width:15%%'>" + goals_HomeTeam + " - " +goals_AwayTeam +"</td>" + 
+                  "<td style='width:35%;text-align:left;'>" + "<img width='40' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
+                "</tr>";
+    } else {
     content += "<tr>"+
                   "<td style='width:15%;'>" + gameTime + "</td>"+
                   "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
                   "<td style='width:15%%'>" + goals_HomeTeam + " - " +goals_AwayTeam +"</td>" + 
                   "<td style='width:35%;text-align:left;'>" + "<img width='30' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
                 "</tr>";
-    });
+    }});
 
     content += "</td></tr></table>";
     return content;
