@@ -301,6 +301,7 @@
     $("#Portugal_PrimeiraLiga").html(content_PrimeiraLiga);
   }
 
+
   function getContent_item(league_name, data){
     if(data.length == 0){
       return null;
@@ -323,7 +324,7 @@
     } else {
       gameTime = e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
     }
-    if (e.league.country == "World"){
+    if (e.league == "Friendlies"){
       content += "<tr>"+
                   "<td style='width:15%;'>" + gameTime + "</td>"+
                   "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='40' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
