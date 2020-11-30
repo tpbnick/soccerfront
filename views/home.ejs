@@ -136,12 +136,23 @@
 <%- include('footer.ejs'); %>
 
 <script>
-  var api_key = "a2994c55ccmsh52c97e939e28026p1ac42djsn3342553e6cbb";
+  var api_key = "44c8b3c2b1b2ece2588d00f04a05deb9";
   $(function(){
     $("#nav_home").addClass("active");
     $("#nav_league").removeClass("active");
     $("#nav_login").removeClass("active");
 
+          
+    const $menu = $('#list1');
+
+    $(document).mouseup(e => {
+      if (!$menu.is(e.target) // if the target of the click isn't the container...
+      && $menu.has(e.target).length === 0) // ... nor a descendant of the container
+      {
+        $menu.removeClass('visible');
+      }
+    });
+    
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth()+1).padStart(2, '0');
@@ -170,11 +181,25 @@
     $("#date_list").html(content_date);
 
     $.ajax({
-      url: "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/"+today+"?timezone=America/New_York",
+      url: "https://v2.api-football.com/fixtures/date/"+today+"?timezone=America/New_York",
       type: "GET",
       beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
       success: function(res) { 
         appendContent(res.api.fixtures);
+      }
+    });
+    var interval = 0; //Auto Update Checkbox in header
+    $('#auto_refresh_checkbox').change(function(){
+      if($('#auto_refresh_checkbox:checked').length >0){
+        interval = setInterval(function(){
+          getContent();
+          console.log('--content updated--');
+        }, 60000);
+      }else{
+        if(interval !== 0){
+          clearInterval(interval);
+          console.log('--content updating stopped--');
+        }
       }
     });
 
@@ -184,18 +209,21 @@
     });
 
     $('#select_date').change(function(){
-        var date = this.value;
-        $.ajax({
-          url: "https://api-football-v1.p.rapidapi.com/v2/fixtures/date/"+date+"?timezone=America/New_York",
+        getContent();
+    });
+  });
+  
+  function getContent(){
+    var date = $('#select_date').val();
+    $.ajax({
+          url: "https://v2.api-football.com/fixtures/date/"+date+"?timezone=America/New_York",
           type: "GET",
           beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
           success: function(res) { 
             appendContent(res.api.fixtures);
           }
         });
-    });
-  });
-  
+  }
   function appendContent(data){
     //england
     let data_PremierLeague = data.filter(item=>item.league.country=="England"&&item.league.name=="Premier League");
@@ -317,8 +345,22 @@
       gameTime = gameDate + "&nbsp;";
     } else if (e.statusShort == "FT"){
       gameTime = e.statusShort;
+    } else if (e.statusShort == "AET"){
+      gameTime = e.statusShort;
+    } else if (e.statusShort == "PEN"){
+      gameTime = e.statusShort;
+    } else if (e.statusShort == "SUSP"){
+      gameTime = "Suspended";
+    } else if (e.statusShort == "CANC"){
+      gameTime = "Cancelled";
+    } else if (e.statusShort == "INT"){
+      gameTime = "Interrupted";
+    } else if (e.statusShort == "ABD"){
+      gameTime = "Abandoned";
+    } else if (e.statusShort == "BT"){
+      gameTime = "Break" +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
     } else if (e.statusShort == "HT"){
-      gameTime = e.statusShort +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
+      gameTime = e.statusShort + "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
     } else if (e.statusShort == "PST"){
       gameTime = "Postponed"
     } else {

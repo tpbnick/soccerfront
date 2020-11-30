@@ -30,7 +30,7 @@
 <%- include('footer.ejs'); %>
 
 <script>
-  var api_key = "a2994c55ccmsh52c97e939e28026p1ac42djsn3342553e6cbb";
+  var api_key = "44c8b3c2b1b2ece2588d00f04a05deb9";
   $(function(){
     $("#nav_league").addClass("active");
     $("#nav_home").removeClass("active");
@@ -75,7 +75,7 @@
     var data = [];
     
     await $.ajax({
-      url: "https://api-football-v1.p.rapidapi.com/v2/leagues/country/"+country+"/"+yyyy,
+      url: "https://v2.api-football.com/leagues/country/"+country+"/"+yyyy,
       type: "GET",
       beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
       success: function(res) { 
@@ -103,7 +103,7 @@
       var content_logo = "<img width='50' height='50' src='" + league_ex[0].logo + "'>&nbsp;&nbsp;&nbsp;<div><h6>" + league_ex[0].country.toUpperCase() + "</h6><h4>" + league_ex[0].name.toUpperCase() + "</h4></div>";
       $("#league_logo").html(content_logo);
       $.ajax({
-            url:"https://api-football-v1.p.rapidapi.com/v2/leagueTable/"+league_id_ex,
+            url:"https://v2.api-football.com/leagueTable/"+league_id_ex,
             type: "GET",
             beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
             success:function(res){
