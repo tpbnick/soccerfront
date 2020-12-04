@@ -14,9 +14,9 @@ body{
 
 select#select_date{
     border-radius: 2px;
-    width: 145px;
+    width: 150px;
     height: 35px;
-    border: 1px solid #ccc;
+    border: 0.5px solid #ccc;
 
 }
 
@@ -55,7 +55,7 @@ footer {
   cursor: pointer;
   display: inline-block;
   padding: 5px 50px 5px 10px;
-  border: 1px solid #ccc;
+  border: 0.5px solid #ccc;
   width: 180px;
   height: 35px;
 }
@@ -63,8 +63,8 @@ footer {
 .dropdown-check-list .anchor:after {
   position: absolute;
   content: "";
-  border-left: 2px solid black;
-  border-top: 2px solid black;
+  border-left: 0.5px solid black;
+  border-top: 0.5px solid black;
   padding: 2.5px;
   right: 10px;
   top: 37%;
@@ -84,7 +84,7 @@ footer {
   padding: 2px;
   display: none;
   margin: 0;
-  border: 1px solid #ccc;
+  border: 0.5px solid #ccc;
   border-top: none;
 }
 
@@ -118,7 +118,8 @@ footer {
 }
 tr{
 text-align: center;
-font-size: larger;
+font-size: 18px;
+
 /* font-weight: bold; */
 }
 .card-body{
@@ -173,7 +174,7 @@ overflow-y: auto;
   color: black;
   font-weight: bold;
   text-decoration: underline;
-
+  padding: .15rem 1.5rem !important;
 }
 
 .navbar-dark .navbar-nav .nav-link{
@@ -186,11 +187,10 @@ overflow-y: auto;
 
 .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link{
   color: white;
-  border-bottom: 1px solid white;
+  border-bottom: 0.5px solid white;
   line-height: 25px;
 
 }
-
 
 a {
   color: white;
@@ -263,7 +263,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 #auto_refresh{
-  margin-top: 13px;
+  margin-top: 12px;
   margin-right: 35px;
 }
 #labelForAutoRefresh{
@@ -277,7 +277,6 @@ input:checked + .slider:before {
   border: none;
   background-color: Transparent;
   background-repeat:no-repeat;
-  border: none;
   overflow: hidden;
   outline:none;
   color:white;
@@ -319,4 +318,26 @@ input:checked + .slider:before {
 
 .dropup:hover .dropbtn {
   background-color: Transparent;
+}
+
+.h5{
+  font-weight: bold !important;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+.table td, .table th {
+    padding: 1.2%;
+    vertical-align: top;
+}
+
+.h2, h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.h5, h5 {
+    font-size: 1.25rem;
+    font-weight: bold;
 }

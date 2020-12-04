@@ -16,35 +16,35 @@
           <ul class="items">
             <li class="dropdown-header">World<img src="https://nicklyss.com/wp-content/uploads/2020/11/world.png" style="padding-left: 5px; width:15%;height:15%;"></li>
             <li><input type="checkbox" name="league-type" value="Friendlies" checked/> International Friendlies</li> 
-            <li class="dropdown-header">Europe<img src="https://nicklyss.com/wp-content/uploads/2020/11/euro.png" style="padding-left: 5px; width:15%;height:15%;"></li>
+            <li class="dropdown-header">Europe<img src="https://media.api-sports.io/flags/eu.svg" style="padding-left: 5px; width:15%;height:15%;"></li>
             <li><input type="checkbox" name="league-type" value="NationsLeague" checked/> Nations League</li> 
             <li><input type="checkbox" name="league-type" value="ChampionsLeague" checked/> Champions League</li> 
             <li><input type="checkbox" name="league-type" value="EuropaLeague" checked/> Europa League</li>
-            <li class="dropdown-header">England<img src="https://nicklyss.com/wp-content/uploads/2020/11/uk.png" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li class="dropdown-header">England<img src="https://media.api-sports.io/flags/gb.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
             <li><input type="checkbox" name="league-type" value="PremierLeague" checked/> Premier League </li>
             <li><input type="checkbox" name="league-type" value="Championship" checked/> Championship </li>
             <li><input type="checkbox" name="league-type" value="LeagueOne" checked/> League One </li>
             <li><input type="checkbox" name="league-type" value="FACup" checked/> FA Cup </li>
-            <li class="dropdown-header">Germany<img src="https://nicklyss.com/wp-content/uploads/2020/11/germany.png" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li class="dropdown-header">Germany<img src="https://media.api-sports.io/flags/de.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
             <li><input type="checkbox" name="league-type" value="Bundesliga" checked/> Bundesliga</li>
             <li><input type="checkbox" name="league-type" value="Bundesliga2" checked/> Bundesliga 2</li>
             <li><input type="checkbox" name="league-type" value="Liga3" checked/> Liga 3</li>
             <li><input type="checkbox" name="league-type" value="DFBPokal" checked/> DFB Pokal</li>
-            <li class="dropdown-header">Spain<img src="https://nicklyss.com/wp-content/uploads/2020/11/spain.png" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li class="dropdown-header">Spain<img src="https://media.api-sports.io/flags/es.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
             <li><input type="checkbox" name="league-type" value="LaLiga" checked/> La Liga</li>
             <li><input type="checkbox" name="league-type" value="LaLiga2" checked/> La Liga 2</li>
             <li><input type="checkbox" name="league-type" value="CopaDelRey" checked/> Copa Del Rey</li>
-            <li class="dropdown-header">Italy<img src="https://nicklyss.com/wp-content/uploads/2020/11/italy.png" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li class="dropdown-header">Italy<img src="https://media.api-sports.io/flags/it.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
             <li><input type="checkbox" name="league-type" value="SerieA" checked/> Serie A </li>
             <li><input type="checkbox" name="league-type" value="SerieB" checked/> Serie B </li>
             <li><input type="checkbox" name="league-type" value="CoppaItalia" checked/> Coppa Italia </li>
-            <li class="dropdown-header">Netherlands<img src="https://nicklyss.com/wp-content/uploads/2020/11/netherlands.png" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li class="dropdown-header">Netherlands<img src="https://media.api-sports.io/flags/nl.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
             <li><input type="checkbox" name="league-type" value="Eredivise" checked/> Eredivise</li>
             <li><input type="checkbox" name="league-type" value="KNVBCup" checked/> KNVB Cup</li>
-            <li class="dropdown-header">France<img src="https://nicklyss.com/wp-content/uploads/2020/11/france.png" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li class="dropdown-header">France<img src="https://media.api-sports.io/flags/fr.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
             <li><input type="checkbox" name="league-type" value="Ligue1" checked/> Ligue 1</li>
             <li><input type="checkbox" name="league-type" value="CoupeDeFrance" checked/> Coupe de France</li>
-            <li class="dropdown-header">Portuga<img src="https://nicklyss.com/wp-content/uploads/2020/11/portugal.png" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li class="dropdown-header">Portuga<img src="https://media.api-sports.io/flags/pt.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
             <li><input type="checkbox" name="league-type" value="PrimeiraLiga" checked/> Primeira Liga</li>      
           </ul>
         </div>
@@ -375,6 +375,13 @@
                   "<td style='width:15%%'>" + goals_HomeTeam + " - " +goals_AwayTeam +"</td>" + 
                   "<td style='width:35%;text-align:left;'>" + "<img width='40' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
                 "</tr>";
+    } else if (e.statusShort == "CANC"){
+    content += "<tr>"+
+                  "<td style='width:15%;'>" + gameTime + "</td>"+
+                  "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
+                  "<td style='width:15%%'>" + "0" + " - " +"0" +"</td>" + 
+                  "<td style='width:35%;text-align:left;'>" + "<img width='30' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
+                "</tr>";
     } else {
     content += "<tr>"+
                   "<td style='width:15%;'>" + gameTime + "</td>"+
@@ -383,6 +390,7 @@
                   "<td style='width:35%;text-align:left;'>" + "<img width='30' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
                 "</tr>";
     }});
+
 
     content += "</td></tr></table>";
     return content;
