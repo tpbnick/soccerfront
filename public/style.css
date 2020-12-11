@@ -358,8 +358,3 @@ table.table th, table.table td {
     padding-bottom: .7rem;
 }
 
-.btn-primary.dropdown-toggle {
-    background-color: #434C5E !important;
-    border-radius: 10px;
-}
-
