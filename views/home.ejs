@@ -59,7 +59,6 @@
           }
         </script>
 
-
         <div id="Friendlies" class="Friendlies">
 
         </div>
@@ -368,7 +367,7 @@
     } else {
       gameTime = e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
     }
-    if (e.league == "Friendlies"){
+    if (e.league.name == "Friendlies"){
       content += "<tr>"+
                   "<td style='width:15%;'>" + gameTime + "</td>"+
                   "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='40' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 

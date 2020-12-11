@@ -1,17 +1,28 @@
 <%- include('head.ejs'); %>
 <body>
   <%- include('header.ejs'); %>
-  <div style="text-align: center;font-size:larger;padding-top: 35px;">
+  <div style="text-align: center;font-size:larger;padding-top: 25px;">
     <label for="league" style="color: white;">Choose League :  </label>
     <select id="league" name="league" class="btn btn-secondary dropdown-toggle">
-        <li class="dropdown-header">England</li>
+        <optgroup label="England">
         <option value="PremierLeague"> Premier League</option> 
-        <li class="dropdown-header">Germany</li>
-        <option value="Bundesliga"> Bundesliga</option> 
-        <option value="LaLiga"> La Liga</option> 
+        <option value="Championship"> Championship</option>
+        <option value="LeagueOne"> League One</option>
+        <optgroup label="Germany">
+        <option value="Bundesliga"> Bundesliga</option>
+        <option value="Bundesliga2"> Bundesliga 2</option>  
+        <option value="3Liga"> 3. Liga</option>  
+        <optgroup label="Spain">
+        <option value="LaLiga"> La Liga</option>
+        <option value="LaLiga2"> Segunda Division</option>
+        <optgroup label="Italy"> 
         <option value="SerieA"> Serie A</option> 
-        <option value="Eredivise"> Eredivise</option> 
+        <option value="SerieB"> Serie B</option> 
+        <optgroup label="Netherlands">
+        <option value="Eredivise"> Eredivise</option>
+        <optgroup label="France"> 
         <option value="Ligue1"> Ligue 1</option>  
+        <optgroup label="Portugal">
         <option value="PrimeiraLiga"> Primeira Liga</option>  
     </select>
   </div>
@@ -36,8 +47,8 @@
     $("#nav_home").removeClass("active");
     $("#nav_login").removeClass("active");
 
-    $("#league").val("Bundesliga");
-    getContent("Germany", "Bundesliga 1");
+    $("#league").val("PremierLeague");
+    getContent("England", "Premier League");
     
     $("#league").change(function(){
       if(this.value == "ChampionsLeague"){
@@ -49,14 +60,32 @@
       if(this.value == "PremierLeague"){
         getContent("England", "Premier League");        
       }
+      if(this.value == "Championship"){
+        getContent("England", "Championship");        
+      }
+      if(this.value == "LeagueOne"){
+        getContent("England", "League One");        
+      }
       if(this.value == "Bundesliga"){
         getContent("Germany", "Bundesliga 1");        
+      }
+      if(this.value == "Bundesliga2"){
+        getContent("Germany", "Bundesliga 2");        
+      }
+      if(this.value == "3Liga"){
+        getContent("Germany", "Liga 3");        
+      }
+      if(this.value == "LaLiga2"){
+        getContent("Spain", "Segunda Division");        
       }
       if(this.value == "LaLiga"){
         getContent("Spain", "Primera Division");        
       }
       if(this.value == "SerieA"){
         getContent("Italy", "Serie A");        
+      }
+      if(this.value == "SerieB"){
+        getContent("Italy", "Serie B");        
       }
       if(this.value == "Eredivise"){
         getContent("Netherlands", "Eredivisie");        
@@ -112,25 +141,25 @@
                 var content = " <p style='font-weight:bold;'>" + league_ex[0].name.toUpperCase() + "</p>" + 
                                 "<table style='width:100%;font-size:12px;' class='table'>" +
                                   "<tr>"+
-                                    "<th style='width:4%'>#</th>" +
-                                    "<th style='width:60%;text-align:left;'>Team</th>" +
-                                    "<th style='width:4%'>PL</th>" +
-                                    "<th style='width:4%'>W</th>" +
-                                    "<th style='width:4%'>D</th>" +
-                                    "<th style='width:4%'>L</th>" +
-                                    "<th style='width:8%'>+/-</th>" +
+                                    "<th style='width:5%'>#</th>" +
+                                    "<th style='width:50%;text-align:left;'>Team</th>" +
+                                    "<th style='width:5%'>PL</th>" +
+                                    "<th style='width:5%'>W</th>" +
+                                    "<th style='width:5%'>D</th>" +
+                                    "<th style='width:5%'>L</th>" +
+                                    "<th style='width:9%'>+/-</th>" +
                                     "<th style='width:6%'>GD</th>" +
                                     "<th style='width:6%'>PTS</th>" +
                                   "</tr>";
                 standings_ex.forEach(el => {
                   content += "<tr>"+
-                                "<td style='width:4%'>" + el.rank + "</td>" +
-                                "<td style='width:60%;text-align:left;'><img class='Image TeamIcon' width='22' height='22' src='" + el.logo + "'>&nbsp;&nbsp;&nbsp;" + el.teamName + "</td>" +
-                                "<td style='width:4%'>" + el.all.matchsPlayed + "</td>" +
-                                "<td style='width:4%'>" + el.all.win + "</td>" +
-                                "<td style='width:4%'>" + el.all.draw + "</td>" +
-                                "<td style='width:4%'>" + el.all.lose + "</td>" +
-                                "<td style='width:8%'>" + el.all.goalsFor + " - " + el.all.goalsAgainst + "</td>" +
+                                "<td style='width:5%'>" + el.rank + "</td>" +
+                                "<td style='width:50%;text-align:left;'><img class='Image TeamIcon' width='22' height='22' src='" + el.logo + "'>&nbsp;&nbsp;&nbsp;" + el.teamName + "</td>" +
+                                "<td style='width:5%'>" + el.all.matchsPlayed + "</td>" +
+                                "<td style='width:5%'>" + el.all.win + "</td>" +
+                                "<td style='width:5%'>" + el.all.draw + "</td>" +
+                                "<td style='width:5%'>" + el.all.lose + "</td>" +
+                                "<td style='width:9%'>" + el.all.goalsFor + " - " + el.all.goalsAgainst + "</td>" +
                                 "<td style='width:6%'>" + el.goalsDiff + "</td>" +
                                 "<td style='width:6%'>" + el.points + "</td>" +
                              "</tr>"      
