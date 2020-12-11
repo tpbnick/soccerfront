@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const favicon = require('serve-favicon');
+const datepicker = require('js-datepicker')
 
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(express.static('public'));
@@ -16,6 +17,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.get('/', function(req, res){	
 	res.render('home');
 })
+
 app.get('/league-tables', function(req, res){
 	res.render('league-tables');
 })

@@ -33,9 +33,13 @@ footer {
 }
 
 .bg-dark{
-  background-color: #434C5E;
+  background-color: #2E3440 !important;
   color: white;
 
+}
+
+.navbar.navbar-dark .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-dark .navbar-nav .nav-item.active>.nav-link {
+    background-color: #4C566A;
 }
 
 .blink_me {
@@ -48,6 +52,7 @@ footer {
 
 .dropdown-check-list {
   display: inline-block;
+  max-width: 200px;
 }
 
 .dropdown-check-list .anchor {
@@ -272,6 +277,11 @@ input:checked + .slider:before {
   color: #7da7db;
 }
 
+.btn {
+  text-transform: none !important;
+  font-size: 1rem;
+}
+
 .dropbtn {
   font-size: 16px;
   border: none;
@@ -330,6 +340,7 @@ input:checked + .slider:before {
 .table td, .table th {
     padding: 1.2%;
     vertical-align: top;
+    font-size: 1.1rem;
 }
 
 .h2, h2 {
@@ -341,3 +352,14 @@ input:checked + .slider:before {
     font-size: 1.25rem;
     font-weight: bold;
 }
+
+table.table th, table.table td {
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+}
+
+.btn-primary.dropdown-toggle {
+    background-color: #434C5E !important;
+    border-radius: 10px;
+}
+
