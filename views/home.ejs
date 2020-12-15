@@ -7,10 +7,9 @@
         <h2>Live Scores</h2>
       </div>
       
-			<div class="card-body">
-        <div id="date_list" class="select-list" tabindex="1" style="margin-left: 5%;margin-top: -70px;position: absolute;background-color: #fff;">
+	<div class="card-body">
+        <input type="date" id="date_list" class="select-list" tabindex="1" min="2018-01-01" max="2023-01-01" style="margin-left: 5%;margin-top: -70px;position: absolute;background-color: #fff;">
 
-        </div>
         <div id="list1" class="dropdown-check-list" tabindex="2" style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
           <span class="anchor">Choose Leagues</span>
           <ul class="items">
@@ -152,16 +151,22 @@
       }
     });
     
+    
     var today = new Date();
+    var limit = new Date();
+    limit.setDate(today.getDate()+60);
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth()+1).padStart(2, '0');
     var yyyy = String(today.getFullYear()).padStart(4, '0');
     today = yyyy + "-" + mm + "-" +dd;
 
-    var content_date = "<select id='select_date' name='select_date'>" +
-                            "<option disabled>--Select Date--</option>";
+    document.getElementById("date_list").setAttribute("max", limit);
 
+    var content_date = document.getElementById("date_list").value;
+
+    /*
     var datee = new Date();
+    
     datee.setDate(datee.getDate()-4);
     for(var i = 0; i < 7; i++){
       datee.setDate(datee.getDate()+1);
@@ -174,9 +179,9 @@
         content_date += "<option value='" + yyyy + "-" + mm + "-" + dd +"'>" + mm + "/" + dd + "/" + yyyy + "</option>";
       }
     }
+    */
 
-    content_date += "</select>";
-
+    $('#date_list').attr('value', today);
     $("#date_list").html(content_date);
 
     $.ajax({
@@ -207,13 +212,13 @@
         $("." + inputValue).toggle(); 
     });
 
-    $('#select_date').change(function(){
+    $('#date_list').change(function(){
         getContent();
     });
   });
   
   function getContent(){
-    var date = $('#select_date').val();
+    var date = $('#date_list').val();
     $.ajax({
           url: "https://v2.api-football.com/fixtures/date/"+date+"?timezone=America/New_York",
           type: "GET",
