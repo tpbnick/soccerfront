@@ -8,8 +8,12 @@
       </div>
       
 	<div class="card-body">
-        <input type="date" id="date_list" class="select-list" tabindex="1" min="2018-01-01" max="2023-01-01" style="margin-left: 5%;margin-top: -70px;position: absolute;background-color: #fff;">
-
+        <div class="date_card">
+          <i class="fas fa-angle-double-left" id="back_day" style="padding-right: 5px; cursor: pointer;"></i>
+          <input type="date" id="date_list" class="select-list" tabindex="1" min="2018-01-01" max="2023-01-01">
+          <i class="fas fa-angle-double-right" id="forward_day" style="padding-left: 5px; cursor: pointer;"></i>
+        </div>
+        
         <div id="list1" class="dropdown-check-list" tabindex="2" style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
           <span class="anchor">Choose Leagues</span>
           <ul class="items">
@@ -140,7 +144,6 @@
     $("#nav_league").removeClass("active");
     $("#nav_login").removeClass("active");
 
-          
     const $menu = $('#list1');
 
     $(document).mouseup(e => {
@@ -151,41 +154,46 @@
       }
     });
     
-    
-    var today = new Date();
-    var limit = new Date();
-    limit.setDate(today.getDate()+60);
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth()+1).padStart(2, '0');
-    var yyyy = String(today.getFullYear()).padStart(4, '0');
-    today = yyyy + "-" + mm + "-" +dd;
-
-    document.getElementById("date_list").setAttribute("max", limit);
-
-    var content_date = document.getElementById("date_list").value;
-
-    /*
-    var datee = new Date();
-    
-    datee.setDate(datee.getDate()-4);
-    for(var i = 0; i < 7; i++){
-      datee.setDate(datee.getDate()+1);
-      dd = String(datee.getDate()).padStart(2, '0');
-      mm = String(datee.getMonth()+1).padStart(2, '0');
-      yyyy = String(datee.getFullYear()).padStart(4, '0');
-      if(i == 3){
-        content_date += "<option selected value='" + yyyy + "-" + mm + "-" + dd +"'>" + mm + "/" + dd + "/" + yyyy + " (today)</option>";
-      }else{
-        content_date += "<option value='" + yyyy + "-" + mm + "-" + dd +"'>" + mm + "/" + dd + "/" + yyyy + "</option>";
-      }
+    function newDate(current_date) {
+      var dd = String(current_date.getDate()).padStart(2, '0');
+      var mm = String(current_date.getMonth()+1).padStart(2, '0'); //month is 0 indexed
+      var yyyy = String(current_date.getFullYear()).padStart(4, '0');
+      var the_new_date_to_display = yyyy + "-" + mm + "-" +dd;
+      return the_new_date_to_display
     }
-    */
 
-    $('#date_list').attr('value', today);
+    var current_date = new Date()
+    var bitchystring = newDate(current_date)
+    alert(bitchystring)
+    var content_date = document.getElementById('date_list').Value;
+
+    $('#date_list').attr('value', current_date);
     $("#date_list").html(content_date);
 
+    $('#forward_day').click(function(){
+      current_date.setDate(current_date.getDate() + 1)
+      var dd = String(current_date.getDate()).padStart(2, '0');
+      var mm = String(current_date.getMonth()+1).padStart(2, '0'); //month is 0 indexed 
+      var yyyy = String(current_date.getFullYear()).padStart(4, '0');
+      var the_new_date_to_display = yyyy + "-" + mm + "-" +dd;
+      $('#date-list').attr('value', the_new_date_do_display);
+      $('#date-list').html(the_new_date_to_display);
+      getContent();
+    })
+
+    $('#back_day').click(function(){
+      current_date.setDate(current_date.getDate() - 1)
+      var dd = String(current_date.getDate()).padStart(2, '0');
+      var mm = String(current_date.getMonth()+1).padStart(2, '0'); //month is 0 indexed 
+      var yyyy = String(current_date.getFullYear()).padStart(4, '0');
+      current_date = yyyy + "-" + mm + "-" +dd;
+      $('#date-list').attr('value', the_new_date_do_display);
+      $('#date-list').html(the_new_date_do_display);
+      getContent();
+    })
+
     $.ajax({
-      url: "https://v2.api-football.com/fixtures/date/"+today+"?timezone=America/New_York",
+      url: "https://v2.api-football.com/fixtures/date/"+current_date+"?timezone=America/New_York",
       type: "GET",
       beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', api_key);},
       success: function(res) { 
@@ -216,7 +224,7 @@
         getContent();
     });
   });
-  
+
   function getContent(){
     var date = $('#date_list').val();
     $.ajax({
@@ -333,7 +341,6 @@
     $("#Portugal_PrimeiraLiga").html(content_PrimeiraLiga);
   }
 
-
   function getContent_item(league_name, data){
     if(data.length == 0){
       return null;
@@ -394,7 +401,6 @@
                   "<td style='width:35%;text-align:left;'>" + "<img width='30' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
                 "</tr>";
     }});
-
 
     content += "</td></tr></table>";
     return content;

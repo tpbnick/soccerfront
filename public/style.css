@@ -50,6 +50,12 @@ footer {
   }
 }
 
+.date_card {
+  margin-left: 4%;
+  margin-top: -70px;
+  position: absolute;
+}
+
 .select-list {
   display: inline-block;
   max-width: 200px;
