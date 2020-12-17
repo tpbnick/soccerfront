@@ -104,16 +104,16 @@
         <div id="Spain_LaLiga2" class="LaLiga2">
 
         </div>
-        <div id="Spain_LaLiga2" class="CopaDelRey">  
+        <div id="#Spain_CopaDelRey" class="CopaDelRey">  
 
         </div>
         <div id="Italy_SerieA" class="SerieA"> 
 
         </div>
-        <div id="Italy_SerieA" class="SerieB"> 
+        <div id="Italy_SerieB" class="SerieB"> 
 
         </div>
-        <div id="Italy_SerieA" class="CoppaItalia">   
+        <div id="#Italy_CoppaItalia" class="CoppaItalia">   
 
         </div>
         <div id="Netherlands_Eredivisie" class="Eredivise">
@@ -153,42 +153,33 @@
         $menu.removeClass('visible');
       }
     });
-    
-    function newDate(current_date) {
-      var dd = String(current_date.getDate()).padStart(2, '0');
-      var mm = String(current_date.getMonth()+1).padStart(2, '0'); //month is 0 indexed
-      var yyyy = String(current_date.getFullYear()).padStart(4, '0');
-      var the_new_date_to_display = yyyy + "-" + mm + "-" +dd;
-      return the_new_date_to_display
-    }
 
-    var current_date = new Date()
-    var bitchystring = newDate(current_date)
-    alert(bitchystring)
+    var current_date = new Date();
+    
+    var dd = String(current_date.getDate()).padStart(2, '0');
+    var mm = String(current_date.getMonth()+1).padStart(2, '0'); //month is 0 indexed
+    var yyyy = String(current_date.getFullYear()).padStart(4, '0');
+    var current_date = yyyy + "-" + mm + "-" +dd;
+
     var content_date = document.getElementById('date_list').Value;
 
     $('#date_list').attr('value', current_date);
     $("#date_list").html(content_date);
 
     $('#forward_day').click(function(){
-      current_date.setDate(current_date.getDate() + 1)
-      var dd = String(current_date.getDate()).padStart(2, '0');
-      var mm = String(current_date.getMonth()+1).padStart(2, '0'); //month is 0 indexed 
-      var yyyy = String(current_date.getFullYear()).padStart(4, '0');
-      var the_new_date_to_display = yyyy + "-" + mm + "-" +dd;
-      $('#date-list').attr('value', the_new_date_do_display);
-      $('#date-list').html(the_new_date_to_display);
+      var current_date = new Date();
+      var current_date = current_date.setDate(current_date.getDate() + 1)
+      var content_date = current_date;
+      $('#date-list').attr('value', current_date);
+      $('#date-list').html(current_date);
       getContent();
     })
 
     $('#back_day').click(function(){
-      current_date.setDate(current_date.getDate() - 1)
-      var dd = String(current_date.getDate()).padStart(2, '0');
-      var mm = String(current_date.getMonth()+1).padStart(2, '0'); //month is 0 indexed 
-      var yyyy = String(current_date.getFullYear()).padStart(4, '0');
-      current_date = yyyy + "-" + mm + "-" +dd;
-      $('#date-list').attr('value', the_new_date_do_display);
-      $('#date-list').html(the_new_date_do_display);
+      var current_date = new Date();
+      var current_date = current_date.setDate(current_date.getDate() - 1)
+      $('#date-list').attr('value', current_date);
+      $('#date-list').html(current_date);
       getContent();
     })
 
