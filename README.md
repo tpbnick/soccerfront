@@ -11,7 +11,7 @@ Current League Table View:<br>
 <h1>Overview</h1>
 This web application is run in Nodejs using the Express framework.  The application is built using HTML, CSS, and JavaScript. 
 
-Soccerfront is the front page of soccer, showing you today's games in Europe's top leagues.  This table offers the ability to see several years of soccer score data, via the dropdown calendar date picker.  You are able to change the day by clicking on the calendar dropdown.  You are also able to turn off/on leagues that interest you in the "Choose Leagues" dropdown.
+Soccerfront is the front page of soccer, showing you today's games in Europe's top leagues.  This table offers the ability to see several years of soccer score data, via the dropdown calendar date picker.  You are able to change the day by clicking on the calendar dropdown.  You are also able to turn off/on leagues that interest you in the "Choose Leagues" dropdown.  The "Auto Refresh" toggle in the banner also will update the table every 60 seconds when activated.
 
 You are also able to look at the league standings for these leagues by clicking on the "League Tables" link in the banner.  The league table page will let you select the league you want to see and shows the team's position, games played, wins, ties, losses, goals for/against, goal difference, and overall points.  You are able to choose what league table you want to see by using the "Choose League" dropdown.
 
