@@ -381,3 +381,8 @@ table.table td {
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
 }
+
+.no_games {
+  text-align: center;
+  text-decoration: bold;
+}
