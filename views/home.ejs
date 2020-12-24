@@ -62,78 +62,76 @@
               checkList.classList.add('visible');
           }
         </script>
-        <div id="leagues">
-          <div id="Friendlies" class="Friendlies">
 
-          </div>
-          <div id="NationsLeague" class="NationsLeague">
+        <div id="Friendlies" class="Friendlies">
 
-          </div>
-          <div id="ChampionsLeague" class="ChampionsLeague">
-
-          </div>
-          <div id="EuropaLeague" class="EuropaLeague">
-
-          </div>
-          <div id="England_PremierLeague" class="PremierLeague">
-
-          </div>
-          <div id="England_Championship" class="Championship">
-
-          </div>
-          <div id="England_LeagueOne" class="LeagueOne">
-
-          </div>
-          <div id="England_FACup" class="FACup">  
-          
-          </div>
-          <div id="Germany_Bundesliga" class="Bundesliga">
-
-          </div>
-          <div id="Germany_Bundesliga2" class="Bundesliga2">
-
-          </div>
-          <div id="Germany_Liga3" class="Liga3">  
-
-          </div>
-          <div id="Germany_DFBPokal" class="DFBPokal">  
-          
-          </div>
-          <div id="Spain_LaLiga" class="LaLiga">
-
-          </div>
-          <div id="Spain_LaLiga2" class="LaLiga2">
-
-          </div>
-          <div id="#Spain_CopaDelRey" class="CopaDelRey">  
-
-          </div>
-          <div id="Italy_SerieA" class="SerieA"> 
-
-          </div>
-          <div id="Italy_SerieB" class="SerieB"> 
-
-          </div>
-          <div id="#Italy_CoppaItalia" class="CoppaItalia">   
-
-          </div>
-          <div id="Netherlands_Eredivisie" class="Eredivise">
-
-          </div>
-          <div id="Netherlands_KNVBCup" class="KNVBCup">
-
-          </div>
-          <div id="France_Ligue1" class="Ligue1">
-
-          </div>
-          <div id="France_CoupeDeFrance" class="CoupeDeFrance">
-
-          </div>
-          <div id="Portugal_PrimeiraLiga" class="PrimeiraLiga">
-
-          </div>
         </div>
-        <div id="no_games" class="no_games"></div>
+        <div id="NationsLeague" class="NationsLeague">
+
+        </div>
+        <div id="ChampionsLeague" class="ChampionsLeague">
+
+        </div>
+        <div id="EuropaLeague" class="EuropaLeague">
+
+        </div>
+        <div id="England_PremierLeague" class="PremierLeague">
+
+        </div>
+        <div id="England_Championship" class="Championship">
+
+        </div>
+        <div id="England_LeagueOne" class="LeagueOne">
+
+        </div>
+        <div id="England_FACup" class="FACup">  
+        
+        </div>
+        <div id="Germany_Bundesliga" class="Bundesliga">
+
+        </div>
+        <div id="Germany_Bundesliga2" class="Bundesliga2">
+
+        </div>
+        <div id="Germany_Liga3" class="Liga3">  
+
+        </div>
+        <div id="Germany_DFBPokal" class="DFBPokal">  
+        
+        </div>
+        <div id="Spain_LaLiga" class="LaLiga">
+
+        </div>
+        <div id="Spain_LaLiga2" class="LaLiga2">
+
+        </div>
+        <div id="#Spain_CopaDelRey" class="CopaDelRey">  
+
+        </div>
+        <div id="Italy_SerieA" class="SerieA"> 
+
+        </div>
+        <div id="Italy_SerieB" class="SerieB"> 
+
+        </div>
+        <div id="#Italy_CoppaItalia" class="CoppaItalia">   
+
+        </div>
+        <div id="Netherlands_Eredivisie" class="Eredivise">
+
+        </div>
+        <div id="Netherlands_KNVBCup" class="KNVBCup">
+
+        </div>
+        <div id="France_Ligue1" class="Ligue1">
+
+        </div>
+        <div id="France_CoupeDeFrance" class="CoupeDeFrance">
+
+        </div>
+        <div id="Portugal_PrimeiraLiga" class="PrimeiraLiga">
+
+        </div>
 			</div>
 		</div>
 	</div>
@@ -141,7 +139,6 @@
 <%- include('footer.ejs'); %>
 
 <script>
-  
   $(function(){
     $("#nav_home").addClass("active");
     $("#nav_league").removeClass("active");
@@ -162,10 +159,10 @@
     var content_date = document.getElementById('date_list').value;
     $('#date_list').attr('value', formatted_date);
     $("#date_list").html(content_date);
-    getGameData()
+    getContent();
 
     $('#refresh').click(function () {
-      getGameData()
+      getContent();
     })
 
     $('#forward_day').click(function () {
@@ -176,7 +173,7 @@
       $('#date_list').attr('value', formatted_date);
       $("#date_list").html(content_date);
       console.log(current_date);
-      getGameData()
+      getContent();
     })
 
     $('#back_day').click(function () {
@@ -187,7 +184,7 @@
       $('#date_list').attr('value', formatted_date);
       $("#date_list").html(content_date);
       console.log(current_date);
-      getGameData()
+      getContent();
     })
 
     $.ajax({
@@ -219,7 +216,7 @@
     });
 
     $('#date_list').change(function(){
-      getGameData()
+        getContent();
     });
   });
 
@@ -242,12 +239,6 @@
           }
         });
   }
-
-  function getGameData(){
-    getContent();
-    noGames();
-  }
-
   function appendContent(data){
     //england
     let data_PremierLeague = data.filter(item=>item.league.country=="England"&&item.league.name=="Premier League");
@@ -353,7 +344,7 @@
     $("#Portugal_PrimeiraLiga").html(content_PrimeiraLiga);
   }
 
-    function getContent_item(league_name, data){
+  function getContent_item(league_name, data){
     if(data.length == 0){
       return null;
     }
@@ -419,17 +410,6 @@
     content += "</td></tr></table>";
     return content;
   }
-
-  function noGames(){
-    if ( $('.leagues').text().length > 0 ) {
-      console.log("Games!");
-      document.getElementById("no_games").innerHTML = "";
-    } else {
-      console.log("No Games!");
-      document.getElementById("no_games").innerHTML = "No games available on selected date!";
-    }
-  }
-
 </script>
 </body>
 </html>
