@@ -62,76 +62,75 @@
               checkList.classList.add('visible');
           }
         </script>
-        <div id="leagues">
-          <div id="Friendlies" class="Friendlies">
 
-          </div>
-          <div id="NationsLeague" class="NationsLeague">
+        <div id="Friendlies" class="Friendlies">
 
-          </div>
-          <div id="ChampionsLeague" class="ChampionsLeague">
+        </div>
+        <div id="NationsLeague" class="NationsLeague">
 
-          </div>
-          <div id="EuropaLeague" class="EuropaLeague">
+        </div>
+        <div id="ChampionsLeague" class="ChampionsLeague">
 
-          </div>
-          <div id="England_PremierLeague" class="PremierLeague">
+        </div>
+        <div id="EuropaLeague" class="EuropaLeague">
 
-          </div>
-          <div id="England_Championship" class="Championship">
+        </div>
+        <div id="England_PremierLeague" class="PremierLeague">
 
-          </div>
-          <div id="England_LeagueOne" class="LeagueOne">
+        </div>
+        <div id="England_Championship" class="Championship">
 
-          </div>
-          <div id="England_FACup" class="FACup">  
-          
-          </div>
-          <div id="Germany_Bundesliga" class="Bundesliga">
+        </div>
+        <div id="England_LeagueOne" class="LeagueOne">
 
-          </div>
-          <div id="Germany_Bundesliga2" class="Bundesliga2">
+        </div>
+        <div id="England_FACup" class="FACup">  
+        
+        </div>
+        <div id="Germany_Bundesliga" class="Bundesliga">
 
-          </div>
-          <div id="Germany_Liga3" class="Liga3">  
+        </div>
+        <div id="Germany_Bundesliga2" class="Bundesliga2">
 
-          </div>
-          <div id="Germany_DFBPokal" class="DFBPokal">  
-          
-          </div>
-          <div id="Spain_LaLiga" class="LaLiga">
+        </div>
+        <div id="Germany_Liga3" class="Liga3">  
 
-          </div>
-          <div id="Spain_LaLiga2" class="LaLiga2">
+        </div>
+        <div id="Germany_DFBPokal" class="DFBPokal">  
+        
+        </div>
+        <div id="Spain_LaLiga" class="LaLiga">
 
-          </div>
-          <div id="#Spain_CopaDelRey" class="CopaDelRey">  
+        </div>
+        <div id="Spain_LaLiga2" class="LaLiga2">
 
-          </div>
-          <div id="Italy_SerieA" class="SerieA"> 
+        </div>
+        <div id="#Spain_CopaDelRey" class="CopaDelRey">  
 
-          </div>
-          <div id="Italy_SerieB" class="SerieB"> 
+        </div>
+        <div id="Italy_SerieA" class="SerieA"> 
 
-          </div>
-          <div id="#Italy_CoppaItalia" class="CoppaItalia">   
+        </div>
+        <div id="Italy_SerieB" class="SerieB"> 
 
-          </div>
-          <div id="Netherlands_Eredivisie" class="Eredivise">
+        </div>
+        <div id="#Italy_CoppaItalia" class="CoppaItalia">   
 
-          </div>
-          <div id="Netherlands_KNVBCup" class="KNVBCup">
+        </div>
+        <div id="Netherlands_Eredivisie" class="Eredivise">
 
-          </div>
-          <div id="France_Ligue1" class="Ligue1">
+        </div>
+        <div id="Netherlands_KNVBCup" class="KNVBCup">
 
-          </div>
-          <div id="France_CoupeDeFrance" class="CoupeDeFrance">
+        </div>
+        <div id="France_Ligue1" class="Ligue1">
 
-          </div>
-          <div id="Portugal_PrimeiraLiga" class="PrimeiraLiga">
+        </div>
+        <div id="France_CoupeDeFrance" class="CoupeDeFrance">
 
-          </div>
+        </div>
+        <div id="Portugal_PrimeiraLiga" class="PrimeiraLiga">
+
         </div>
         <div id="no_games" class="no_games"></div>
 			</div>
@@ -141,7 +140,6 @@
 <%- include('footer.ejs'); %>
 
 <script>
-  
   $(function(){
     $("#nav_home").addClass("active");
     $("#nav_league").removeClass("active");
@@ -162,10 +160,10 @@
     var content_date = document.getElementById('date_list').value;
     $('#date_list').attr('value', formatted_date);
     $("#date_list").html(content_date);
-    getGameData()
+    getContent();
 
     $('#refresh').click(function () {
-      getGameData()
+      getContent();
     })
 
     $('#forward_day').click(function () {
@@ -175,8 +173,7 @@
       var formatted_date = formatDate(current_date);
       $('#date_list').attr('value', formatted_date);
       $("#date_list").html(content_date);
-      console.log(current_date);
-      getGameData()
+      getContent();
     })
 
     $('#back_day').click(function () {
@@ -186,8 +183,7 @@
       var formatted_date = formatDate(current_date);
       $('#date_list').attr('value', formatted_date);
       $("#date_list").html(content_date);
-      console.log(current_date);
-      getGameData()
+      getContent();
     })
 
     $.ajax({
@@ -219,7 +215,7 @@
     });
 
     $('#date_list').change(function(){
-      getGameData()
+        getContent();
     });
   });
 
@@ -241,46 +237,43 @@
             appendContent(res.api.fixtures);
           }
         });
+        setTimeout(function() { tableCheck(); }, 800);
   }
-
-  function getGameData(){
-    getContent();
-    noGames();
-  }
-
   function appendContent(data){
+
+
     //england
-    let data_PremierLeague = data.filter(item=>item.league.country=="England"&&item.league.name=="Premier League");
-    let data_Championship = data.filter(item=>item.league.country=="England"&&item.league.name=="Championship");
-    let data_LeagueOne = data.filter(item=>item.league.country=="England"&&item.league.name=="League One");
-    let data_FACup = data.filter(item=>item.league.country=="England"&&item.league.name=="FA Cup");
+    let data_PremierLeague = (data || []).filter(item=>item.league.country=="England"&&item.league.name=="Premier League");
+    let data_Championship = (data || []).filter(item=>item.league.country=="England"&&item.league.name=="Championship");
+    let data_LeagueOne = (data || []).filter(item=>item.league.country=="England"&&item.league.name=="League One");
+    let data_FACup = (data || []).filter(item=>item.league.country=="England"&&item.league.name=="FA Cup");
     //germany
-    let data_Bundesliga = data.filter(item=>item.league.country=="Germany"&&item.league.name=="Bundesliga 1");
-    let data_Bundesliga2 = data.filter(item=>item.league.country=="Germany"&&item.league.name=="Bundesliga 2");
-    let data_Liga3 = data.filter(item=>item.league.country=="Germany"&&item.league.name=="Liga 3");
-    let data_DFBPokal = data.filter(item=>item.league.country=="Germany"&&item.league.name=="DFB Pokal");
+    let data_Bundesliga = (data || []).filter(item=>item.league.country=="Germany"&&item.league.name=="Bundesliga 1");
+    let data_Bundesliga2 = (data || []).filter(item=>item.league.country=="Germany"&&item.league.name=="Bundesliga 2");
+    let data_Liga3 = (data || []).filter(item=>item.league.country=="Germany"&&item.league.name=="Liga 3");
+    let data_DFBPokal = (data || []).filter(item=>item.league.country=="Germany"&&item.league.name=="DFB Pokal");
     //spain
-    let data_LaLiga = data.filter(item=>item.league.country=="Spain"&&item.league.name=="Primera Division");
-    let data_LaLiga2 = data.filter(item=>item.league.country=="Spain"&&item.league.name=="Segunda Division");
-    let data_CopaDelRey = data.filter(item=>item.league.country=="Spain"&&item.league.name=="Copa Del Rey");
+    let data_LaLiga = (data || []).filter(item=>item.league.country=="Spain"&&item.league.name=="Primera Division");
+    let data_LaLiga2 = (data || []).filter(item=>item.league.country=="Spain"&&item.league.name=="Segunda Division");
+    let data_CopaDelRey = (data || []).filter(item=>item.league.country=="Spain"&&item.league.name=="Copa Del Rey");
     //italy
-    let data_SerieA = data.filter(item=>item.league.country=="Italy"&&item.league.name=="Serie A");
-    let data_SerieB = data.filter(item=>item.league.country=="Italy"&&item.league.name=="Serie B");
-    let data_CoppaItalia = data.filter(item=>item.league.country=="Italy"&&item.league.name=="Coppa Italia");
+    let data_SerieA = (data || []).filter(item=>item.league.country=="Italy"&&item.league.name=="Serie A");
+    let data_SerieB = (data || []).filter(item=>item.league.country=="Italy"&&item.league.name=="Serie B");
+    let data_CoppaItalia = (data || []).filter(item=>item.league.country=="Italy"&&item.league.name=="Coppa Italia");
     //netherlands
-    let data_Eredivisie = data.filter(item=>item.league.country=="Netherlands"&&item.league.name=="Eredivisie");
-    let data_KNVBCup = data.filter(item=>item.league.country=="Netherlands"&&item.league.name=="KNVB Beker");
+    let data_Eredivisie = (data || []).filter(item=>item.league.country=="Netherlands"&&item.league.name=="Eredivisie");
+    let data_KNVBCup = (data || []).filter(item=>item.league.country=="Netherlands"&&item.league.name=="KNVB Beker");
     //france
-    let data_league1 = data.filter(item=>item.league.country=="France"&&item.league.name=="Ligue 1");
-    let data_CoupeDeFrance = data.filter(item=>item.league.country=="France"&&item.league.name=="Coupe De France");
+    let data_league1 = (data || []).filter(item=>item.league.country=="France"&&item.league.name=="Ligue 1");
+    let data_CoupeDeFrance = (data || []).filter(item=>item.league.country=="France"&&item.league.name=="Coupe De France");
     //portugal
-    let data_PremieraLiga = data.filter(item=>item.league.country=="Portugal"&&item.league.name=="Primeira Liga");
+    let data_PremieraLiga = (data || []).filter(item=>item.league.country=="Portugal"&&item.league.name=="Primeira Liga");
     //europe
-    let data_NationsLeague = data.filter(item=>item.league.country=="World"&&item.league.name=="UEFA Nations League");
-    let data_ChampionsLeague = data.filter(item=>item.league.country=="World"&&item.league.name=="UEFA Champions League");
-    let data_EuropaLeague = data.filter(item=>item.league.country=="World"&&item.league.name=="UEFA Europa League");
+    let data_NationsLeague = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="UEFA Nations League");
+    let data_ChampionsLeague = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="UEFA Champions League");
+    let data_EuropaLeague = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="UEFA Europa League");
     //world
-    let data_Friendlies = data.filter(item=>item.league.country=="World"&&item.league.name=="Friendlies");
+    let data_Friendlies = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="Friendlies");
 
 
     let content_Friendlies = getContent_item("Friendlies", data_Friendlies);
@@ -353,11 +346,11 @@
     $("#Portugal_PrimeiraLiga").html(content_PrimeiraLiga);
   }
 
-    function getContent_item(league_name, data){
+  function getContent_item(league_name, data){
     if(data.length == 0){
       return null;
     }
-    let content="<br/><h5>" + league_name + "</h5><hr style='height:2px;border-width:0;color:gray;background-color:gray'><table class='table table-secondary table-bordered' style='width:100%;'>";
+    let content="<br/><h5>" + league_name + "</h5><hr style='height:2px;border-width:0;color:gray;background-color:gray'><table id='leagueTables' class='table table-secondary table-bordered' style='width:100%;'>";
     
     data.forEach(e => {
     var goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
@@ -420,16 +413,13 @@
     return content;
   }
 
-  function noGames(){
-    if ( $('.leagues').text().length > 0 ) {
-      console.log("Games!");
+function tableCheck(){
+  if (document.getElementById("leagueTables")) {
       document.getElementById("no_games").innerHTML = "";
-    } else {
-      console.log("No Games!");
-      document.getElementById("no_games").innerHTML = "No games available on selected date!";
-    }
-  }
-
+   }else{
+     document.getElementById("no_games").innerHTML = "No games available on selected date! <i class='far fa-frown'></i>";
+   }
+}
 </script>
 </body>
 </html>

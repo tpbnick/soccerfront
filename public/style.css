@@ -385,4 +385,11 @@ table.table td {
 .no_games {
   text-align: center;
   text-decoration: bold;
+  font-size: 120%;
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+
+.Friendlies {
+  margin-top: -20px;
 }
