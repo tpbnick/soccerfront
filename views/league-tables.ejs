@@ -99,7 +99,7 @@
   });
   
   async function getContent(country, leaguename){
-    var yyyy = (new Date()).getFullYear();
+    var yyyy = (new Date()).getFullYear()-1;
     var data = [];
     
     await $.ajax({
