@@ -187,9 +187,16 @@
     })
 
     $.ajax({
-      url: "https://v2.api-football.com/fixtures/date/"+current_date+"?timezone=America/New_York",
-      type: "GET",
-      beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', "<%=apikey%>");},
+      url: "/fetch_fixtures",
+      method: "POST",
+      headers: {
+        "Accept": "application/json; odata=verbose",
+        "Content-Type": "application/json; odata=verbose"
+      },
+      data: JSON.stringify({
+        the_date: current_date
+      }),
+      processData: false,
       success: function(res) { 
         appendContent(res.api.fixtures);
       }
@@ -230,13 +237,20 @@
   function getContent(){
     var date = $('#date_list').val();
     $.ajax({
-          url: "https://v2.api-football.com/fixtures/date/"+date+"?timezone=America/New_York",
-          type: "GET",
-          beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', "<%=apikey%>");},
-          success: function(res) { 
-            appendContent(res.api.fixtures);
-          }
-        });
+      url: "/fetch_fixtures",
+      method: "POST",
+      headers: {
+        "Accept": "application/json; odata=verbose",
+        "Content-Type": "application/json; odata=verbose"
+      },
+      data: JSON.stringify({
+        the_date: date
+      }),
+      processData: false,
+      success: function(res) { 
+        appendContent(res.api.fixtures);
+      }
+    });
         setTimeout(function() { tableCheck(); }, 800);
   }
   function appendContent(data){

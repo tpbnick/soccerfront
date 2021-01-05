@@ -69,6 +69,7 @@ footer {
 .dropdown-check-list {
   display: inline-block;
   max-width: 200px;
+  user-select: none;
 }
 
 .dropdown-check-list .anchor {
@@ -79,6 +80,7 @@ footer {
   border: 0.5px solid #ccc;
   width: 180px;
   height: 35px;
+  user-select: none;
 }
 
 .dropdown-check-list .anchor:after {
@@ -94,6 +96,7 @@ footer {
   -o-transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
+  user-select: none;
 }
 
 .dropdown-check-list .anchor:active:after {
@@ -107,12 +110,14 @@ footer {
   margin: 0;
   border: 0.5px solid #ccc;
   border-top: none;
+  user-select: none;
 }
 
 .dropdown-check-list ul.items li {
   list-style: none;
   padding-left: 3px;
   padding-right: 3px;
+  user-select: none;
 }
 
 .dropdown-check-list.visible .anchor {
@@ -392,4 +397,24 @@ table.table td {
 
 .Friendlies {
   margin-top: -20px;
+}
+
+.card-header {
+  user-select: none;
+}
+
+.select-list {
+  user-select: none;
+}
+
+.date_card {
+  user-select: none;
+}
+
+.auto_refresh {
+  user-select: none;
+}
+
+.navbar-brand {
+  user-select: none;
 }

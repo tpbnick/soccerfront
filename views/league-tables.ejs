@@ -3,7 +3,7 @@
   <%- include('header.ejs'); %>
   <div style="text-align: center;font-size:larger;padding-top: 25px;">
     <label for="league" style="color: white;">Choose League :  </label>
-    <select id="league" name="league" class="select" data-filter="true" type="button" data-toggle="dropdown" style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
+    <select id="league" name="league" class="select" data-filter="true" type="button" style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
         <optgroup label="England" data-icon="https://media.api-sports.io/football/leagues/39.png">
         <option value="PremierLeague"> Premier League</option> 
         <option value="Championship"> Championship</option>
@@ -103,15 +103,31 @@
     var data = [];
     
     await $.ajax({
-      url: "https://v2.api-football.com/leagues/country/"+country+"/"+yyyy,
-      type: "GET",
-      beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', "<%=apikey%>");},
+      url: "/fetch_leagues",
+      method: "POST",
+      headers: {
+        "Accept": "application/json; odata=verbose",
+        "Content-Type": "application/json; odata=verbose"
+      },
+      data: JSON.stringify({
+        the_country: country,
+        the_yyyy: yyyy
+      }),
+      processData: false,
       success: function(res) { 
         if(res.api.results == 0){
           $.ajax({
-            url: "https://api-football-v1.p.rapidapi.com/v2/leagues/country/"+country+"/"+(yyyy-1),
-            type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', "<%=apikey%>");},
+            url: "fetch_leagues_else",
+            method: "POST",
+            headers: {
+              "Accept": "application/json; odata=verbose",
+              "Content-Type": "application/json; odata=verbose"
+            },
+            data: JSON.stringify({
+              the_country: country,
+              the_yyyy: yyyy
+            }),
+            processData: false,
             success:function(res){
               if(res.api.results !== 0){
                 data = res.api.leagues;
@@ -131,9 +147,16 @@
       var content_logo = "<img width='50' height='50' src='" + league_ex[0].logo + "'>&nbsp;&nbsp;&nbsp;<div><h6>" + league_ex[0].country.toUpperCase() + "</h6><h4>" + league_ex[0].name.toUpperCase() + "</h4></div>";
       $("#league_logo").html(content_logo);
       $.ajax({
-            url:"https://v2.api-football.com/leagueTable/"+league_id_ex,
-            type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('X-RapidAPI-Key', "<%=apikey%>");},
+            url: "fetch_league_table",
+            method: "POST",
+            headers: {
+              "Accept": "application/json; odata=verbose",
+              "Content-Type": "application/json; odata=verbose"
+            },
+            data: JSON.stringify({
+              the_league_id_ex: league_id_ex,
+            }),
+            processData: false,
             success:function(res){
               if(res.api.results !== 0){
                 standings_ex = res.api.standings[0];
