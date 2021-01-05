@@ -28,6 +28,7 @@ footer {
   bottom: 0;
   width: 100%;
   color: #d8dee9;
+  user-select: none;
 }
 
 .bg-dark {
@@ -354,10 +355,6 @@ input:checked + .slider:before {
   background-color: Transparent;
 }
 
-.h5 {
-  font-weight: bold !important;
-}
-
 .table-bordered td,
 .table-bordered th {
   border: 1px solid #dee2e6;
@@ -379,6 +376,7 @@ h2 {
 h5 {
   font-size: 1.25rem;
   font-weight: bold;
+  user-select: none;
 }
 
 table.table th,
