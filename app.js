@@ -25,6 +25,10 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
+app.get("/register", function (req, res) {
+  res.render("register");
+});
+
 app.post("/fetch_fixtures", async function (req, res) {
   const result = await fetch(
     `https://v2.api-football.com/fixtures/date/${req.body.the_date}?timezone=America/New_York`,

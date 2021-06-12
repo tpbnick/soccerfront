@@ -21,6 +21,7 @@
             <li class="dropdown-header">World<img src="https://nicklyss.com/wp-content/uploads/2020/11/world.png" style="padding-left: 5px; width:15%;height:15%;"></li>
             <li><input type="checkbox" name="league-type" value="Friendlies" checked/> International Friendlies</li> 
             <li class="dropdown-header">Europe<img src="https://media.api-sports.io/flags/eu.svg" style="padding-left: 5px; width:15%;height:15%;"></li>
+            <li><input type="checkbox" name="league-type" value="Euro" checked/> UEFA Euro</li> 
             <li><input type="checkbox" name="league-type" value="NationsLeague" checked/> Nations League</li> 
             <li><input type="checkbox" name="league-type" value="ChampionsLeague" checked/> Champions League</li> 
             <li><input type="checkbox" name="league-type" value="EuropaLeague" checked/> Europa League</li>
@@ -63,80 +64,58 @@
               checkList.classList.add('visible');
           }
         </script>
-
+        <div id="Euro" class="Euro">
+        </div>
         <div id="Friendlies" class="Friendlies">
-
         </div>
         <div id="NationsLeague" class="NationsLeague">
-
         </div>
         <div id="ChampionsLeague" class="ChampionsLeague">
-
         </div>
         <div id="EuropaLeague" class="EuropaLeague">
-
         </div>
         <div id="England_PremierLeague" class="PremierLeague">
-
         </div>
         <div id="England_Championship" class="Championship">
-
         </div>
         <div id="England_LeagueOne" class="LeagueOne">
-
         </div>
         <div id="England_LeagueCup" class="LeagueCup">  
-        
         </div>
         <div id="England_FACup" class="FACup">  
-        
         </div>
         <div id="Germany_Bundesliga" class="Bundesliga">
-
         </div>
         <div id="Germany_Bundesliga2" class="Bundesliga2">
-
         </div>
         <div id="Germany_Liga3" class="Liga3">  
-
         </div>
         <div id="Germany_DFBPokal" class="DFBPokal">  
-        
         </div>
         <div id="Spain_LaLiga" class="LaLiga">
-
         </div>
         <div id="Spain_LaLiga2" class="LaLiga2">
-
         </div>
         <div id="Spain_CopaDelRey" class="CopaDelRey">  
-
         </div>
         <div id="Italy_SerieA" class="SerieA"> 
-
         </div>
         <div id="Italy_SerieB" class="SerieB"> 
-
         </div>
         <div id="Italy_CoppaItalia" class="CoppaItalia">   
-
         </div>
         <div id="Netherlands_Eredivisie" class="Eredivise">
-
         </div>
         <div id="Netherlands_KNVBCup" class="KNVBCup">
-
         </div>
         <div id="France_Ligue1" class="Ligue1">
-
         </div>
         <div id="France_CoupeDeFrance" class="CoupeDeFrance">
-
         </div>
         <div id="Portugal_PrimeiraLiga" class="PrimeiraLiga">
-
         </div>
         <div id="no_games" class="no_games"></div>
+        <div id="only_live" class="only_live"></div>
 			</div>
 		</div>
 	</div>
@@ -153,7 +132,7 @@
 
     $(document).mouseup(e => {
       if (!$menu.is(e.target) // if the target of the click isn't the container...
-      && $menu.has(e.target).length === 0) // ... nor a descendant of the container
+      && $menu.has(e.target).length === 0) // ... nor inside the container
       {
         $menu.removeClass('visible');
       }
@@ -190,6 +169,7 @@
       $("#date_list").html(content_date);
       getContent();
     })
+
 
     $.ajax({
       url: "/fetch_fixtures",
@@ -289,11 +269,15 @@
     //portugal
     let data_PremieraLiga = (data || []).filter(item=>item.league.country=="Portugal"&&item.league.name=="Primeira Liga");
     //europe
+    let data_Euro = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="Euro Championship");
     let data_NationsLeague = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="UEFA Nations League");
     let data_ChampionsLeague = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="UEFA Champions League");
     let data_EuropaLeague = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="UEFA Europa League");
     //world
     let data_Friendlies = (data || []).filter(item=>item.league.country=="World"&&item.league.name=="Friendlies");
+
+    let content_Euro = getContent_item("UEFA European Championship", data_Euro);
+    $("#Euro").html(content_Euro);
 
     let content_Friendlies = getContent_item("Friendlies", data_Friendlies);
     $("#Friendlies").html(content_Friendlies);
@@ -408,14 +392,7 @@
     } else {
       gameTime = e.statusShort + "&nbsp;" + "-" + "&nbsp;" + e.elapsed + "'" +  "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
     }
-    if (e.league.name == "Friendlies"){
-      content += "<tr>"+
-                  "<td style='width:15%;'>" + gameTime + "</td>"+
-                  "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='40' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
-                  "<td style='width:15%%'>" + goals_HomeTeam + " - " +goals_AwayTeam +"</td>" + 
-                  "<td style='width:35%;text-align:left;'>" + "<img width='40' height='30' src='" + e.awayTeam.logo + "'>&nbsp;&nbsp;&nbsp;" + e.awayTeam.team_name +  "</td>"+
-                "</tr>";
-    } else if (e.statusShort == "CANC"){
+    if (e.statusShort == "CANC"){
     content += "<tr>"+
                   "<td style='width:15%;'>" + gameTime + "</td>"+
                   "<td style='width:35%;text-align:right;'>" + e.homeTeam.team_name + "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" + e.homeTeam.logo + "'>" + "</td>" + 
