@@ -417,3 +417,13 @@ table.table td {
 .navbar-brand {
   user-select: none;
 }
+
+.leagueYear h4{
+  display: inline;
+  font-weight:400;
+}
+
+.leagueYear span{
+  text-align: right;
+  font-size: 15px;
+}

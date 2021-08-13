@@ -4,7 +4,7 @@
   <div style="text-align: center;font-size:larger;padding-top: 25px;">
     <label for="league" style="color: white;">Choose League :  </label>
     <select id="league" name="league" class="select" data-filter="true" type="button" style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
-        <optgroup label="England" data-icon="https://media.api-sports.io/football/leagues/39.png">
+        <optgroup label="England">
         <option value="PremierLeague"> Premier League</option> 
         <option value="Championship"> Championship</option>
         <option value="LeagueOne"> League One</option>
@@ -25,82 +25,129 @@
         <optgroup label="Portugal">
         <option value="PrimeiraLiga"> Primeira Liga</option>  
     </select>
+    <label for="season" style="color: white; padding-left:20px;">Season :  </label>
+    <select id="season" name="season" class="select" data-filter="true" type="button" style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
+      <option value="2021"> 2021-2022</option>
+      <option value="2020"> 2020-2021</option>
+      <option value="2019"> 2019-2020</option>
+      <option value="2018"> 2018-2019</option>
+      <option value="2017"> 2017-2018</option>
+      <option value="2016"> 2016-2017</option>
+      <option value="2015"> 2015-2016</option>
+      <option value="2014"> 2014-2015</option>
+      <option value="2013"> 2013-2014</option>
+
+    </select>
+    <i class="fas fa-sync-alt" id="refresh" style="padding-left: 20px; cursor: pointer; color:#d8dee9;"></i>
   </div>
 	<div class="container-fluid">
         <div class="card" id="card_league_table" style="background: rgb(255, 255, 255, 1); box-shadow: 5px 5px 5px #374452; border-radius: 15px;">
-			      <div class="card-header" id="league_logo" style="text-align: left;display: inline-flex;">
-                
-            </div>
-      
-            <div class="card-body" id="league_table">
-                      
-            </div>
+			      <div class="card-header" id="league_logo" style="text-align: left;display: inline-flex;"></div>      
+            <div class="card-body" id="league_table"></div>
 		    </div>
 	</div>
 
 <%- include('footer.ejs'); %>
 
 <script>
+  var countryx = "England";
+  var leaguex = "Premier League";
+  var season = $("#season").val();
   $(function(){
     $("#nav_league").addClass("active");
     $("#nav_home").removeClass("active");
     $("#nav_login").removeClass("active");
-
-    $("#league").val("PremierLeague");
-    getContent("England", "Premier League");
+    var season = $("#season").val();
+    var league = $("#league").val();
     
-    $("#league").change(function(){
-      if(this.value == "ChampionsLeague"){
-        getContent("World", "UEFA Champions League");
-      }
-      if(this.value == "EuropaLeague"){
-        getContent("World", "UEFA Europa League");
-      }
-      if(this.value == "PremierLeague"){
-        getContent("England", "Premier League");        
-      }
-      if(this.value == "Championship"){
-        getContent("England", "Championship");        
-      }
-      if(this.value == "LeagueOne"){
-        getContent("England", "League One");        
-      }
-      if(this.value == "Bundesliga"){
-        getContent("Germany", "Bundesliga 1");        
-      }
-      if(this.value == "Bundesliga2"){
-        getContent("Germany", "Bundesliga 2");        
-      }
-      if(this.value == "3Liga"){
-        getContent("Germany", "Liga 3");        
-      }
-      if(this.value == "LaLiga2"){
-        getContent("Spain", "Segunda Division");        
-      }
-      if(this.value == "LaLiga"){
-        getContent("Spain", "Primera Division");        
-      }
-      if(this.value == "SerieA"){
-        getContent("Italy", "Serie A");        
-      }
-      if(this.value == "SerieB"){
-        getContent("Italy", "Serie B");        
-      }
-      if(this.value == "Eredivise"){
-        getContent("Netherlands", "Eredivisie");        
-      }
-      if(this.value == "Ligue1"){
-        getContent("France", "Ligue 1");        
-      }
-      if(this.value == "PrimeiraLiga"){
-        getContent("Portugal", "Primeira Liga");        
+    getContent("England", "Premier League", season);
+    
+    $("#league" || "#season").change(function(){
+      if(season != null){
+        if(this.value == "ChampionsLeague"){
+          countryx = "World";
+          leaguex = "UEFA Champions League";
+          season = $("#season").val();
+        }
+        if(this.value == "EuropaLeague"){
+          countryx = "World";
+          leaguex = "UEFA Europa League";
+          season = $("#season").val();
+        }
+        if(this.value == "PremierLeague"){
+          countryx = "England";
+          leaguex = "Premier League";
+          season = $("#season").val();
+        }
+        if(this.value == "Championship"){
+          countryx = "England";
+          leaguex = "Championship";
+          season = $("#season").val();
+        }
+        if(this.value == "LeagueOne"){
+          countryx = "England";
+          leaguex = "League One";
+          season = $("#season").val();
+        }
+        if(this.value == "Bundesliga"){
+          countryx = "Germany";
+          leaguex = "Bundesliga 1";
+          season = $("#season").val();
+        }
+        if(this.value == "Bundesliga2"){
+          countryx = "Germany";
+          leaguex = "Bundesliga 2";
+          season = $("#season").val();
+        }
+        if(this.value == "3Liga"){
+          countryx = "Germany";
+          leaguex = "Liga 3";
+          season = $("#season").val();
+        }
+        if(this.value == "LaLiga2"){
+          countryx = "Spain";
+          leaguex = "Segunda Division";
+          season = $("#season").val();
+        }
+        if(this.value == "LaLiga"){
+          countryx = "Spain";
+          leaguex = "Primera Division";
+          season = $("#season").val();
+        }
+        if(this.value == "SerieA"){
+          countryx = "Italy";
+          leaguex = "Serie A";
+          season = $("#season").val();
+        }
+        if(this.value == "SerieB"){
+          countryx = "Italy";
+          leaguex = "Serie B";
+          season = $("#season").val();
+        }
+        if(this.value == "Eredivise"){
+          countryx = "Netherlands";
+          leaguex = "Eredivisie";
+          season = $("#season").val();
+        }
+        if(this.value == "Ligue1"){
+          countryx = "France";
+          leaguex = "Ligue 1";
+          season = $("#season").val();
+        }
+        if(this.value == "PrimeiraLiga"){
+          countryx = "Portugal", "Primeira Liga";
+          leaguex = "Primeira Liga";
+          season = $("#season").val();
+        }
       }
     });
   });
   
-  async function getContent(country, leaguename){
-    var yyyy = (new Date()).getFullYear()-1;
+  async function getContent(countryx, leaguex, season){
+    var yyyy = season;
+    var country = countryx;
     var data = [];
+    console.log(country, Number(season),"-", Number(season)+1);
     
     await $.ajax({
       url: "/fetch_leagues",
@@ -140,11 +187,12 @@
       }
     });
 
-    var league_ex = data.filter(item=>item.name == leaguename);
+    var league_ex = data.filter(item=>item.name == leaguex);
     var standings_ex = [];
     if(league_ex !== []){
       var league_id_ex = league_ex[0].league_id;
-      var content_logo = "<img width='50' height='50' src='" + league_ex[0].logo + "'>&nbsp;&nbsp;&nbsp;<div><h6>" + league_ex[0].country.toUpperCase() + "</h6><h4>" + league_ex[0].name.toUpperCase() + "</h4></div>";
+      var seasonYear = Number(season) + 1;
+      var content_logo = "<img width='50' height='50' src='" + league_ex[0].logo + "'>&nbsp;&nbsp;&nbsp;<div><h6>" + league_ex[0].country.toUpperCase() + "</h6><div class='leagueYear'><h4>" + league_ex[0].name.toUpperCase() + "</h4><span>" + " (" + season + "-" + seasonYear + ")" + "</span></div></div>";
       $("#league_logo").html(content_logo);
       $.ajax({
             url: "fetch_league_table",
@@ -165,7 +213,7 @@
                                   "<tr>"+
                                     "<th style='width:5%'>#</th>" +
                                     "<th style='width:50%;text-align:left;'>Team</th>" +
-                                    "<th style='width:5%'>PL</th>" +
+                                    "<th style='width:5%'>GP</th>" +
                                     "<th style='width:5%'>W</th>" +
                                     "<th style='width:5%'>D</th>" +
                                     "<th style='width:5%'>L</th>" +
@@ -193,6 +241,10 @@
       });
     }
   }
+  $('#refresh').click(function () {
+    var season = $("#season").val();
+    getContent(countryx, leaguex, season);
+  })
   
 </script>
 </body>
