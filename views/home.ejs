@@ -12,7 +12,7 @@
           <i class="fas fa-angle-double-left" id="back_day" style="padding-right: 5px; cursor: pointer;"></i>
           <input type="date" id="date_list" class="select-list" tabindex="1" min="2018-01-01" max="2023-01-01">
           <i class="fas fa-angle-double-right" id="forward_day" style="padding-left: 5px; cursor: pointer;"></i>
-          <i class="fas fa-sync-alt" id="refresh" style="padding-left: 5px; cursor: pointer;"></i>
+          <span class="refreshIconHome"><i class="fas fa-sync-alt" id="refresh" style="cursor: pointer;"></i></span>
         </div>
         
         <div id="list1" class="dropdown-check-list" tabindex="2" style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
@@ -420,6 +420,13 @@ function tableCheck(){
      document.getElementById("no_games").innerHTML = "No games available on selected date! <i class='far fa-frown'></i>";
    }
 }
+
+$( '#refresh' ).click(function() {
+    $( this ).addClass( 'fa-spin' );
+    var $el = $(this);
+    setTimeout(function() { $el.removeClass( 'fa-spin' ); }, 1000);
+    startup();
+});
 
 </script>
 </body>

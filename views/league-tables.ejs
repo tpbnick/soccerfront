@@ -38,7 +38,9 @@
       <option value="2013"> 2013-2014</option>
 
     </select>
-    <i class="fas fa-sync-alt" id="refresh" style="padding-left: 20px; cursor: pointer; color:#d8dee9;"></i>
+    <span class="refreshIcon">
+    <i class="fas fa-sync-alt" id="refresh" onclick="rotateIcon()" style="cursor: pointer; color:#d8dee9;"></i>
+    </span>
   </div>
 	<div class="container-fluid">
         <div class="card" id="card_league_table" style="background: rgb(255, 255, 255, 1); box-shadow: 5px 5px 5px #374452; border-radius: 15px;">
@@ -245,6 +247,13 @@
     var season = $("#season").val();
     getContent(countryx, leaguex, season);
   })
+
+  $( '#refresh' ).click(function() {
+    $( this ).addClass( 'fa-spin' );
+    var $el = $(this);
+    setTimeout(function() { $el.removeClass( 'fa-spin' ); }, 1000);
+    startup();
+});
   
 </script>
 </body>

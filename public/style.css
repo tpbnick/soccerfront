@@ -427,3 +427,11 @@ table.table td {
   text-align: right;
   font-size: 15px;
 }
+
+.refreshIcon{
+  padding-left: 20px;
+}
+
+.refreshIconHome{
+  padding-left: 10px;
+}
