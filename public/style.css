@@ -314,6 +314,7 @@ input:checked + .slider:before {
   overflow: hidden;
   outline: none;
   color: white;
+  cursor: help;
 }
 
 .dropup {
