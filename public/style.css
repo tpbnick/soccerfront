@@ -250,7 +250,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #BF616A;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 15px;
@@ -270,7 +270,7 @@ a:hover {
 }
 
 input:checked + .slider {
-  background-color: #626f8a;
+  background-color: #8FBCBB;
 }
 
 input:focus + .slider {
@@ -298,7 +298,7 @@ input:checked + .slider:before {
 #labelForAutoRefresh {
   margin-top: 11px;
   margin-right: 8px;
-  color: #7da7db;
+  color: #ECEFF4;
 }
 
 .btn {
