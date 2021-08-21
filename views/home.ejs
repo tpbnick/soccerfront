@@ -189,6 +189,7 @@
     var interval = 0; //Auto Update Checkbox in header
     $('#auto_refresh_checkbox').change(function(){
       if($('#auto_refresh_checkbox:checked').length >0){
+        getContent();
         interval = setInterval(function(){
           getContent();
           console.log('--content updated--');
@@ -425,7 +426,7 @@ $( '#refresh' ).click(function() {
     $( this ).addClass( 'fa-spin' );
     var $el = $(this);
     setTimeout(function() { $el.removeClass( 'fa-spin' ); }, 1000);
-    startup();
+    getContent();
 });
 
 </script>
