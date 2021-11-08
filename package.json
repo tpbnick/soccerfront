@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "fetch": "^1.1.0",
     "mongoose": "^5.10.10",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.6",
     "nodemon": "^2.0.6",
     "require": "^2.4.20",
     "serve-favicon": "^2.5.0"

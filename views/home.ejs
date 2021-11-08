@@ -18,41 +18,42 @@
         <div id="list1" class="dropdown-check-list" tabindex="2" style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
           <span class="anchor">Choose Leagues</span>
           <ul class="items">
-            <li class="dropdown-header">World<img src="https://nicklyss.com/wp-content/uploads/2020/11/world.png" style="padding-left: 5px; width:15%;height:15%;"></li>
-            <li><input type="checkbox" name="league-type" value="Friendlies" checked/> International Friendlies</li> 
-            <li><input type="checkbox" name="league-type" value="World Cup*" checked/> World Cup Qualification</li> 
-            <li class="dropdown-header">Europe<img src="https://media.api-sports.io/flags/eu.svg" style="padding-left: 5px; width:15%;height:15%;"></li>
-            <li><input type="checkbox" name="league-type" value="Euro" checked/> UEFA Euro</li> 
-            <li><input type="checkbox" name="league-type" value="NationsLeague" checked/> Nations League</li> 
-            <li><input type="checkbox" name="league-type" value="ChampionsLeague" checked/> Champions League</li> 
-            <li><input type="checkbox" name="league-type" value="EuropaLeague" checked/> Europa League</li>
-            <li class="dropdown-header">England<img src="https://media.api-sports.io/flags/gb.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li><input type="checkbox" name="league-type" value="PremierLeague" checked/> Premier League </li>
-            <li><input type="checkbox" name="league-type" value="Championship" checked/> Championship </li>
-            <li><input type="checkbox" name="league-type" value="LeagueOne" checked/> League One </li>
-            <li><input type="checkbox" name="league-type" value="FACup" checked/> FA Cup </li>
-            <li><input type="checkbox" name="league-type" value="LeagueCup" checked/> League Cup </li>
-            <li class="dropdown-header">Germany<img src="https://media.api-sports.io/flags/de.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li><input type="checkbox" name="league-type" value="Bundesliga" checked/> Bundesliga</li>
-            <li><input type="checkbox" name="league-type" value="Bundesliga2" checked/> Bundesliga 2</li>
-            <li><input type="checkbox" name="league-type" value="Liga3" checked/> Liga 3</li>
-            <li><input type="checkbox" name="league-type" value="DFBPokal" checked/> DFB Pokal</li>
-            <li class="dropdown-header">Spain<img src="https://media.api-sports.io/flags/es.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li><input type="checkbox" name="league-type" value="LaLiga" checked/> La Liga</li>
-            <li><input type="checkbox" name="league-type" value="LaLiga2" checked/> La Liga 2</li>
-            <li><input type="checkbox" name="league-type" value="CopaDelRey" checked/> Copa Del Rey</li>
-            <li class="dropdown-header">Italy<img src="https://media.api-sports.io/flags/it.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li><input type="checkbox" name="league-type" value="SerieA" checked/> Serie A </li>
-            <li><input type="checkbox" name="league-type" value="SerieB" checked/> Serie B </li>
-            <li><input type="checkbox" name="league-type" value="CoppaItalia" checked/> Coppa Italia </li>
-            <li class="dropdown-header">Netherlands<img src="https://media.api-sports.io/flags/nl.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li><input type="checkbox" name="league-type" value="Eredivise" checked/> Eredivise</li>
-            <li><input type="checkbox" name="league-type" value="KNVBCup" checked/> KNVB Cup</li>
-            <li class="dropdown-header">France<img src="https://media.api-sports.io/flags/fr.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li><input type="checkbox" name="league-type" value="Ligue1" checked/> Ligue 1</li>
-            <li><input type="checkbox" name="league-type" value="CoupeDeFrance" checked/> Coupe de France</li>
-            <li class="dropdown-header">Portuga<img src="https://media.api-sports.io/flags/pt.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li><input type="checkbox" name="league-type" value="PrimeiraLiga" checked/> Primeira Liga</li>      
+            <li id="worldHeader" class="dropdown-header">World<img src="https://nicklyss.com/wp-content/uploads/2020/11/world.png" style="padding-left: 5px; width:15%;height:15%;"></li>
+            <li id="friendliesCheckbox"><input type="checkbox" name="league-type" value="Friendlies" checked/> International Friendlies</li> 
+            <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="World Cup" checked/> World Cup Qualification</li> 
+            <li id="europeHeader" class="dropdown-header">Europe<img src="https://media.api-sports.io/flags/eu.svg" style="padding-left: 5px; width:15%;height:15%;"></li>
+            <li id="euroCheckbox"><input type="checkbox" name="league-type" value="Euro" checked/> UEFA Euro</li> 
+            <li id="nationsCheckbox"><input type="checkbox" name="league-type" value="NationsLeague" checked/> Nations League</li> 
+            <li id="championsCheckbox"><input type="checkbox" name="league-type" value="ChampionsLeague" checked/> Champions League</li> 
+            <li id="europaCheckbox"><input type="checkbox" name="league-type" value="EuropaLeague" checked/> Europa League</li>
+            <li id="englandHeader" class="dropdown-header">England<img src="https://media.api-sports.io/flags/gb.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li id="premierCheckbox"><input type="checkbox" name="league-type" value="PremierLeague" checked/> Premier League </li>
+            <li id="championshipCheckbox"><input type="checkbox" name="league-type" value="Championship" checked/> Championship </li>
+            <li id="leagueoneCheckbox"><input type="checkbox" name="league-type" value="LeagueOne" checked/> League One </li>
+            <li id="facupCheckbox"><input type="checkbox" name="league-type" value="FACup" checked/> FA Cup </li>
+            <li id="leaguecupCheckbox"><input type="checkbox" name="league-type" value="LeagueCup" checked/> League Cup </li>
+            <li id="germanyHeader" class="dropdown-header">Germany<img src="https://media.api-sports.io/flags/de.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li id="bundesligaCheckbox"><input type="checkbox" name="league-type" value="Bundesliga" checked/> Bundesliga</li>
+            <li id="bundesliga2Checkbox"><input type="checkbox" name="league-type" value="Bundesliga2" checked/> Bundesliga 2</li>
+            <li id="liga3Checkbox"><input type="checkbox" name="league-type" value="Liga3" checked/> Liga 3</li>
+            <li id="dfbpokalCheckbox"><input type="checkbox" name="league-type" value="DFBPokal" checked/> DFB Pokal</li>
+            <li id="spainHeader" class="dropdown-header">Spain<img src="https://media.api-sports.io/flags/es.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li id="laligaCheckbox"><input type="checkbox" name="league-type" value="LaLiga" checked/> La Liga</li>
+            <li id="laliga2Checkbox"><input type="checkbox" name="league-type" value="LaLiga2" checked/> La Liga 2</li>
+            <li id="copadelreyCheckbox"><input type="checkbox" name="league-type" value="CopaDelRey" checked/> Copa Del Rey</li>
+            <li id="italyHeader" class="dropdown-header">Italy<img src="https://media.api-sports.io/flags/it.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li id="serieaCheckbox"><input type="checkbox" name="league-type" value="SerieA" checked/> Serie A </li>
+            <li id="seriebCheckbox"><input type="checkbox" name="league-type" value="SerieB" checked/> Serie B </li>
+            <li id="coppaitaliaCheckbox"><input type="checkbox" name="league-type" value="CoppaItalia" checked/> Coppa Italia </li>
+            <li id="netherlandsHeader" class="dropdown-header">Netherlands<img src="https://media.api-sports.io/flags/nl.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li id="erediviseCheckbox"><input type="checkbox" name="league-type" value="Eredivise" checked/> Eredivise</li>
+            <li id="knvbcupCheckbox"><input type="checkbox" name="league-type" value="KNVBCup" checked/> KNVB Cup</li>
+            <li id="franceHeader" class="dropdown-header">France<img src="https://media.api-sports.io/flags/fr.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li id="ligue1Checkbox"><input type="checkbox" name="league-type" value="Ligue1" checked/> Ligue 1</li>
+            <li id="coupedefranceCheckbox"><input type="checkbox" name="league-type" value="CoupeDeFrance" checked/> Coupe de France</li>
+            <li id="portugalHeader" class="dropdown-header">Portugal<img src="https://media.api-sports.io/flags/pt.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
+            <li id="primeiraligaCheckbox"><input type="checkbox" name="league-type" value="PrimeiraLiga" checked/> Primeira Liga</li>
+            <li id="noGamesAvailable" class="noGamesAvailable">No games available<br>for selected date</li>
           </ul>
         </div>
             
@@ -187,6 +188,7 @@
       processData: false,
       success: function(res) { 
         appendContent(res.api.fixtures);
+        tableCheck();
       }
     });
     var interval = 0; //Auto Update Checkbox in header
@@ -239,6 +241,7 @@
       success: function(res) { 
         appendContent(res.api.fixtures);
         tableCheck();
+        listCheck();
       }
     });
   };
@@ -256,7 +259,7 @@
     let data_Liga3 = (data || []).filter(item=>item.league.country=="Germany"&&item.league.name=="Liga 3");
     let data_DFBPokal = (data || []).filter(item=>item.league.country=="Germany"&&item.league.name=="DFB Pokal");
     //spain
-    let data_LaLiga = (data || []).filter(item=>item.league.country=="Spain"&&item.league.name=="Primera Division");
+    let data_LaLiga = (data || []).filter(item=>item.league.country=="Spain"&&item.league.name=="La Liga");
     let data_LaLiga2 = (data || []).filter(item=>item.league.country=="Spain"&&item.league.name=="Segunda Division");
     let data_CopaDelRey = (data || []).filter(item=>item.league.country=="Spain"&&item.league.name=="Copa del Rey");
     //italy
@@ -428,11 +431,273 @@ function tableCheck(){
 };
 
 $('#refresh').click(function() {
-    $(this).addClass( 'fa-spin' );
+    $(this).addClass('fa-spin');
     var $el = $(this);
     setTimeout(function() { $el.removeClass('fa-spin'); }, 1000);
     getContent();
 });
+
+function listCheck(){
+  // World data check
+  if ($('#Friendlies').is(":empty")){
+    $('#friendliesCheckbox').addClass('noContentList');
+    var friendliesEmpty = true;
+  } else {
+    $('#friendliesCheckbox').removeClass('noContentList')
+    var friendliesEmpty = false;
+  };
+  if ($('#WorldCupQual').is(":empty")){
+    $('#worldcupCheckbox').addClass('noContentList');
+    var worldCupEmpty = true;
+  } else {
+    $('#worldcupCheckbox').removeClass('noContentList')
+    var worldCupEmpty = false;
+  };
+  if (friendliesEmpty && worldCupEmpty){
+    $('#worldHeader').addClass('noContentList');
+    var worldEmpty = true;
+  } else {
+    $('#worldHeader').removeClass('noContentList')
+    var worldEmpty = false;
+  };
+  // Euro data check
+  if ($('#Euro').is(":empty")){
+    $('#euroCheckbox').addClass('noContentList');
+    var euroEmpty = true;
+  } else {
+    $('#euroCheckbox').removeClass('noContentList')
+    var euroEmpty = false;
+  };
+  if ($('#NationsLeague').is(":empty")){
+    $('#nationsCheckbox').addClass('noContentList');
+    var nationsEmpty = true;
+  } else {
+    $('#nationsCheckbox').removeClass('noContentList')
+    var nationsEmpty = false;
+  };
+  if ($('#ChampionsLeague').is(":empty")){
+    $('#championsCheckbox').addClass('noContentList');
+    var championsEmpty = true;
+  } else {
+    $('#championsCheckbox').removeClass('noContentList')
+    var championsEmpty = false;
+  };
+  if ($('#EuropaLeague').is(":empty")){
+    $('#europaCheckbox').addClass('noContentList');
+    var europaEmpty = true;
+  } else {
+    $('#europaCheckbox').removeClass('noContentList')
+    var europaEmpty = false;
+  };
+  if (euroEmpty && nationsEmpty && championsEmpty && europaEmpty){
+    $('#europeHeader').addClass('noContentList');
+    var europeEmpty = true;
+  } else {
+    $('#europeHeader').removeClass('noContentList');
+    var europeEmpty = false;
+  };
+  // England data check
+  if ($('#England_PremierLeague').is(":empty")){
+    $('#premierCheckbox').addClass('noContentList');
+    var premierEmpty = true;
+  } else {
+    $('#premierCheckbox').removeClass('noContentList');
+    var premierEmpty = false;
+  };
+  if ($('#England_Championship').is(":empty")){
+    $('#championshipCheckbox').addClass('noContentList');
+    var championshipEmpty = true;
+  } else {
+    $('#championshipCheckbox').removeClass('noContentList');
+    var championshipEmpty = false;
+  };
+  if ($('#England_LeagueOne').is(":empty")){
+    $('#leagueoneCheckbox').addClass('noContentList');
+    var leagueoneEmpty = true;
+  } else {
+    $('#leagueoneCheckbox').removeClass('noContentList');
+    var leagueoneEmpty = false;
+  };
+  if ($('#England_FACup').is(":empty")){
+    $('#facupCheckbox').addClass('noContentList');
+    var facupEmpty = true;
+  } else {
+    $('#facupCheckbox').removeClass('noContentList');
+    var facupEmpty = false;
+  };
+  if ($('#England_LeagueCup').is(":empty")){
+    $('#leaguecupCheckbox').addClass('noContentList');
+    var leaguecupEmpty = true;
+  } else {
+    $('#leaguecupCheckbox').removeClass('noContentList');
+    var leaguecupEmpty = false;
+  };
+  if (premierEmpty && championshipEmpty && leagueoneEmpty && facupEmpty && leaguecupEmpty){
+    $('#englandHeader').addClass('noContentList');
+    var englandEmpty = true;
+  } else {
+    $('#englandHeader').removeClass('noContentList');
+    var englandEmpty = false;
+  };
+  // Germany data check
+  if ($('#Germany_Bundesliga').is(":empty")){
+    $('#bundesligaCheckbox').addClass('noContentList');
+    var bundesligaEmpty = true;
+  } else {
+    $('#bundesligaCheckbox').removeClass('noContentList');
+    var bundesligaEmpty = false;
+  };
+  if ($('#Germany_Bundesliga2').is(":empty")){
+    $('#bundesliga2Checkbox').addClass('noContentList');
+    var bundesliga2Empty = true;
+  } else {
+    $('#bundesliga2Checkbox').removeClass('noContentList');
+    var bundesliga2Empty = false;
+  };
+  if ($('#Germany_Liga3').is(":empty")){
+    $('#liga3Checkbox').addClass('noContentList');
+    var liga3Empty = true;
+  } else {
+    $('#liga3Checkbox').removeClass('noContentList');
+    var liga3Empty = false;
+  };
+  if ($('#Germany_DFBPokal').is(":empty")){
+    $('#dfbpokalCheckbox').addClass('noContentList');
+    var dfbpokalEmpty = true;
+  } else {
+    $('#dfbpokalCheckbox').removeClass('noContentList');
+    var dfbpokalEmpty = false;
+  };
+  if (bundesligaEmpty && bundesliga2Empty && liga3Empty && dfbpokalEmpty){
+    $('#germanyHeader').addClass('noContentList');
+    var germanyEmpty = true;
+  } else {
+    $('#germanyHeader').removeClass('noContentList');
+    var germanyEmpty = false;
+  };
+  // Spain data check
+  if ($('#Spain_LaLiga').is(":empty")){
+    $('#laligaCheckbox').addClass('noContentList');
+    var laligaEmpty = true;
+  } else {
+    $('#laligaCheckbox').removeClass('noContentList');
+    var laligaEmpty = false;
+  };
+  if ($('#Spain_LaLiga2').is(":empty")){
+    $('#laliga2Checkbox').addClass('noContentList');
+    var laliga2Empty = true;
+  } else {
+    $('#laliga2Checkbox').removeClass('noContentList');
+    var laliga2Empty = false;
+  };
+  if ($('#Spain_CopaDelRey').is(":empty")){
+    $('#copadelreyCheckbox').addClass('noContentList');
+    var copadelreyEmpty = true;
+  } else {
+    $('#copadelreyCheckbox').removeClass('noContentList');
+    var copadelreyEmpty = false;
+  };
+  if (laligaEmpty && laliga2Empty && copadelreyEmpty){
+    $('#spainHeader').addClass('noContentList');
+    var spainEmpty = true;
+  } else {
+    $('#spainHeader').removeClass('noContentList');
+    var spainEmpty = false;
+  };
+  // Italy data check
+  if ($('#Italy_SerieA').is(":empty")){
+    $('#serieaCheckbox').addClass('noContentList');
+    var serieaEmpty = true;
+  } else {
+    $('#serieaCheckbox').removeClass('noContentList');
+    var serieaEmpty = false;
+  };
+  if ($('#Italy_SerieB').is(":empty")){
+    $('#seriebCheckbox').addClass('noContentList');
+    var seriebEmpty = true;
+  } else {
+    $('#seriebCheckbox').removeClass('noContentList');
+    var seriebEmpty = false;
+  };
+  if ($('#Italy_CoppaItalia').is(":empty")){
+    $('#coppaitaliaCheckbox').addClass('noContentList');
+    var coppaitaliaEmpty = true;
+  } else {
+    $('#coppaitaliaCheckbox').removeClass('noContentList');
+    var coppaitaliaEmpty = false;
+  };
+  if (serieaEmpty && seriebEmpty && coppaitaliaEmpty){
+    $('#italyHeader').addClass('noContentList');
+    var italyEmpty = true;
+  } else {
+    $('#italyHeader').removeClass('noContentList');
+    var italyEmpty = false;
+  };
+  // Netherlands data check
+  if ($('#Netherlands_Eredivisie').is(":empty")){
+    $('#erediviseCheckbox').addClass('noContentList');
+    var eredivisieEmpty = true;
+  } else {
+    $('#erediviseCheckbox').removeClass('noContentList');
+    var eredivisieEmpty = false;
+  };
+  if ($('#Netherlands_KNVBCup').is(":empty")){
+    $('#knvbcupCheckbox').addClass('noContentList');
+    var knvbcupEmpty = true;
+  } else {
+    $('#knvbcupCheckbox').removeClass('noContentList');
+    var knvbcupEmpty = false;
+  };
+  if (eredivisieEmpty && knvbcupEmpty){
+    $('#netherlandsHeader').addClass('noContentList');
+    var netherlandsEmpty = true;
+  } else {
+    $('#netherlandsHeader').removeClass('noContentList');
+    var netherlandsEmpty = false;
+  };
+  // France data check
+  if ($('#France_Ligue1').is(":empty")){
+    $('#ligue1Checkbox').addClass('noContentList');
+    var ligue1Empty = true;
+  } else {
+    $('#ligue1Checkbox').removeClass('noContentList');
+    var ligue1Empty = false;
+  };
+  if ($('#France_CoupeDeFrance').is(":empty")){
+    $('#coupedefranceCheckbox').addClass('noContentList');
+    var coupedefranceEmpty = true;
+  } else {
+    $('#coupedefranceCheckbox').removeClass('noContentList');
+    var coupedefranceEmpty = false;
+  };
+  if (ligue1Empty && coupedefranceEmpty){
+    $('#franceHeader').addClass('noContentList');
+    var franceEmpty = true;
+  } else {
+    $('#franceHeader').removeClass('noContentList');
+    var franceEmpty = false;
+  };
+  // Portugal data check
+  if ($('#Portugal_PrimeiraLiga').is(":empty")){
+    $('#primeiraligaCheckbox').addClass('noContentList');
+    var primeiraligaEmpty = true;
+  } else {
+    $('#primeiraligaCheckbox').removeClass('noContentList');
+    var primeiraligaEmpty = false;
+  };
+  if (primeiraligaEmpty){
+    $('#portugalHeader').addClass('noContentList');
+    var portugalEmpty = true;
+  } else {
+    $('#portugalHeader').removeClass('noContentList');
+    var portugalEmpty = false;
+  };
+  if (worldEmpty && euroEmpty && englandEmpty && germanyEmpty && spainEmpty && netherlandsEmpty && italyEmpty && franceEmpty && portugalEmpty){
+    $('#noGamesAvailable').removeClass('noGamesAvailable');
+  } else {
+    $('#noGamesAvailable').addClass('noGamesAvailable')
+  };
+};
 
 </script>
 </body>

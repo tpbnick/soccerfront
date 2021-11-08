@@ -71,6 +71,7 @@ footer {
   display: inline-block;
   max-width: 200px;
   user-select: none;
+  overflow-x: hidden;
 }
 
 .dropdown-check-list .anchor {
@@ -250,7 +251,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #BF616A;
+  background-color: #bf616a;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 15px;
@@ -270,7 +271,7 @@ a:hover {
 }
 
 input:checked + .slider {
-  background-color: #8FBCBB;
+  background-color: #8fbcbb;
 }
 
 input:focus + .slider {
@@ -298,7 +299,7 @@ input:checked + .slider:before {
 #labelForAutoRefresh {
   margin-top: 11px;
   margin-right: 8px;
-  color: #ECEFF4;
+  color: #eceff4;
 }
 
 .btn {
@@ -419,20 +420,28 @@ table.table td {
   user-select: none;
 }
 
-.leagueYear h4{
+.leagueYear h4 {
   display: inline;
-  font-weight:400;
+  font-weight: 400;
 }
 
-.leagueYear span{
+.leagueYear span {
   text-align: right;
   font-size: 15px;
 }
 
-.refreshIcon{
+.refreshIcon {
   padding-left: 20px;
 }
 
-.refreshIconHome{
+.refreshIconHome {
   padding-left: 10px;
+}
+
+.noContentList {
+  display: none !important;
+}
+
+.noGamesAvailable {
+  display: none !important;
 }
