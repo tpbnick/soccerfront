@@ -161,6 +161,9 @@
       // $('#date_list').attr('value', formatted_date);
       $('#date_list').val(formatted_date);
       $("#date_list").html(content_date);
+      $("#refresh").addClass('fa-spin');
+      var $el = $("#refresh");
+      setTimeout(function() { $el.removeClass('fa-spin'); }, 1000);
       getContent();
     });
 
@@ -171,6 +174,9 @@
       var formatted_date = formatDate(current_date);
       $('#date_list').val(formatted_date);
       $("#date_list").html(content_date);
+      $("#refresh").addClass('fa-spin');
+      var $el = $("#refresh");
+      setTimeout(function() { $el.removeClass('fa-spin'); }, 1000);
       getContent();
     });
 
