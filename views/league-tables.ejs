@@ -39,7 +39,7 @@
 
     </select>
     <span class="refreshIcon">
-    <i class="fas fa-sync-alt" id="refresh" onclick="rotateIcon()" style="cursor: pointer; color:#d8dee9;"></i>
+    <i class="fas fa-sync-alt" id="refresh" style="cursor: pointer; color:#d8dee9;"></i>
     </span>
   </div>
 	<div class="container-fluid">
@@ -149,7 +149,6 @@
     var yyyy = season;
     var country = countryx;
     var data = [];
-    console.log(country, Number(season),"-", Number(season)+1);
     
     await $.ajax({
       url: "/fetch_leagues",
@@ -252,7 +251,6 @@
     $( this ).addClass( 'fa-spin' );
     var $el = $(this);
     setTimeout(function() { $el.removeClass( 'fa-spin' ); }, 1000);
-    startup();
 });
   
 </script>
