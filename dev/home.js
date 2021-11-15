@@ -5,7 +5,7 @@ $(function () {
 
     const $menu = $("#list1");
 
-    $(document).mouseup((e) => {
+    $(document).on('click', (e) => {
         if (
             !$menu.is(e.target) && // if the target of the click isn't the container...
             $menu.has(e.target).length === 0
@@ -18,15 +18,14 @@ $(function () {
     var current_date = new Date();
     var formatted_date = formatDate(current_date);
     var content_date = document.getElementById("date_list").value;
-    $("#date_list").attr("value", formatted_date);
-    $("#date_list").html(content_date);
+    $("#date_list").attr("value", formatted_date).html(content_date);
     getContent();
 
-    $("#refresh").click(function () {
+    $("#refresh").on('click', function () {
         getContent();
     });
 
-    $("#forward_day").click(function () {
+    $("#forward_day").on('click', function () {
         var content_date = document.getElementById("date_list").value;
         var current_date = new Date(content_date);
         current_date.setDate(current_date.getDate() + 2);
@@ -37,7 +36,7 @@ $(function () {
         getContent();
     });
 
-    $("#back_day").click(function () {
+    $("#back_day").on('click', function () {
         var content_date = document.getElementById("date_list").value;
         var current_date = new Date(content_date);
         current_date.setDate(current_date.getDate());
@@ -89,15 +88,14 @@ $(function () {
 });
 
 function formatDate(date) {
-    var dd = String(date.getDate()).padStart(2, "0");
-    var mm = String(date.getMonth() + 1).padStart(2, "0"); //month is 0 indexed
-    var yyyy = String(date.getFullYear()).padStart(4, "0");
-    var datestring = yyyy + "-" + mm + "-" + dd;
-    return datestring;
+    let dd = String(date.getDate()).padStart(2, "0");
+    let mm = String(date.getMonth() + 1).padStart(2, "0"); //month is 0 indexed
+    let yyyy = String(date.getFullYear()).padStart(4, "0");
+    return yyyy + "-" + mm + "-" + dd;
 }
 
 function getContent() {
-    var date = $("#date_list").val();
+    let date = $("#date_list").val();
     $.ajax({
         url: "/fetch_fixtures",
         method: "POST",
@@ -113,7 +111,7 @@ function getContent() {
             appendContent(res.api.fixtures);
             listCheck();
             $("#refresh").addClass("fa-spin");
-            var $el = $("#refresh");
+            let $el = $("#refresh");
             setTimeout(function () {
                 $el.removeClass("fa-spin");
             }, 1000);
@@ -411,36 +409,36 @@ function getContent_item(league_name, data) {
         "</h5><hr style='height:2px;border-width:0;color:gray;background-color:gray'><table id='leagueTables' class='table table-secondary table-bordered' style='width:100%;'>";
 
     data.forEach((e) => {
-        var goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
-        var goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam;
-        var gameDate = e.event_date.slice(11, 16);
-        var gameTime;
-        if (e.statusShort == "NS") {
+        let goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
+        let goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam;
+        let gameDate = e.event_date.slice(11, 16);
+        let gameTime;
+        if (e.statusShort === "NS") {
             gameTime = gameDate + "&nbsp;";
-        } else if (e.statusShort == "FT") {
+        } else if (e.statusShort === "FT") {
             gameTime = e.statusShort;
-        } else if (e.statusShort == "AET") {
+        } else if (e.statusShort === "AET") {
             gameTime = e.statusShort;
-        } else if (e.statusShort == "PEN") {
+        } else if (e.statusShort === "PEN") {
             gameTime = e.statusShort;
-        } else if (e.statusShort == "SUSP") {
+        } else if (e.statusShort === "SUSP") {
             gameTime = "Suspended";
-        } else if (e.statusShort == "TBD") {
+        } else if (e.statusShort === "TBD") {
             gameTime = e.statusShort;
-        } else if (e.statusShort == "CANC") {
+        } else if (e.statusShort === "CANC") {
             gameTime = "Cancelled";
-        } else if (e.statusShort == "WO") {
+        } else if (e.statusShort === "WO") {
             gameTime = "Cancelled";
-        } else if (e.statusShort == "INT") {
+        } else if (e.statusShort === "INT") {
             gameTime = "Interrupted";
-        } else if (e.statusShort == "ABD") {
+        } else if (e.statusShort === "ABD") {
             gameTime = "Abandoned";
-        } else if (e.statusShort == "BT") {
+        } else if (e.statusShort === "BT") {
             gameTime = "Break" + "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
-        } else if (e.statusShort == "HT") {
+        } else if (e.statusShort === "HT") {
             gameTime =
                 e.statusShort + "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
-        } else if (e.statusShort == "PST") {
+        } else if (e.statusShort === "PST") {
             gameTime = "Postponed";
         } else {
             gameTime =
@@ -453,7 +451,7 @@ function getContent_item(league_name, data) {
                 "&nbsp;" +
                 "<span class='blink_me'>(LIVE)</span>";
         }
-        if (e.statusShort == "CANC") {
+        if (e.statusShort === "CANC") {
             content +=
                 "<tr>" +
                 "<td style='width:15%;'>" +
@@ -509,7 +507,7 @@ function getContent_item(league_name, data) {
 }
 
 function tableCheck() {
-    if ($("#leagueTables").length == 0) {
+    if ($("#leagueTables").length === 0) {
         $("#no_games").html(
             "No games available on selected date! <i class='far fa-frown'></i>"
         );
@@ -518,7 +516,7 @@ function tableCheck() {
     }
 }
 
-$("#refresh").click(function () {
+$("#refresh").on('click', function () {
     $(this).addClass("fa-spin");
     var $el = $(this);
     setTimeout(function () {

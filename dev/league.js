@@ -1,89 +1,87 @@
-var countryx = "England";
-var leaguex = "Premier League";
-var season = $("#season").val();
+let countryx = "England";
+let leaguex = "Premier League";
 $(function () {
     $("#nav_league").addClass("active");
     $("#nav_home").removeClass("active");
     $("#nav_login").removeClass("active");
-    var season = $("#season").val();
-    var league = $("#league").val();
+    let season = $("#season").val();
 
     getContent("England", "Premier League", season);
 
-    $("#league" || "#season").change(function () {
+    $("#league" || "#season").on('click', function () {
         if (season != null) {
-            if (this.value == "ChampionsLeague") {
+            if (this.value === "ChampionsLeague") {
                 countryx = "World";
                 leaguex = "UEFA Champions League";
                 season = $("#season").val();
             }
-            if (this.value == "EuropaLeague") {
+            if (this.value === "EuropaLeague") {
                 countryx = "World";
                 leaguex = "UEFA Europa League";
                 season = $("#season").val();
             }
-            if (this.value == "PremierLeague") {
+            if (this.value === "PremierLeague") {
                 countryx = "England";
                 leaguex = "Premier League";
                 season = $("#season").val();
             }
-            if (this.value == "Championship") {
+            if (this.value === "Championship") {
                 countryx = "England";
                 leaguex = "Championship";
                 season = $("#season").val();
             }
-            if (this.value == "LeagueOne") {
+            if (this.value === "LeagueOne") {
                 countryx = "England";
                 leaguex = "League One";
                 season = $("#season").val();
             }
-            if (this.value == "Bundesliga") {
+            if (this.value === "Bundesliga") {
                 countryx = "Germany";
                 leaguex = "Bundesliga 1";
                 season = $("#season").val();
             }
-            if (this.value == "Bundesliga2") {
+            if (this.value === "Bundesliga2") {
                 countryx = "Germany";
                 leaguex = "Bundesliga 2";
                 season = $("#season").val();
             }
-            if (this.value == "3Liga") {
+            if (this.value === "3Liga") {
                 countryx = "Germany";
                 leaguex = "Liga 3";
                 season = $("#season").val();
             }
-            if (this.value == "LaLiga2") {
+            if (this.value === "LaLiga2") {
                 countryx = "Spain";
                 leaguex = "Segunda Division";
                 season = $("#season").val();
             }
-            if (this.value == "LaLiga") {
+            if (this.value === "LaLiga") {
                 countryx = "Spain";
                 leaguex = "La Liga";
                 season = $("#season").val();
             }
-            if (this.value == "SerieA") {
+            if (this.value === "SerieA") {
                 countryx = "Italy";
                 leaguex = "Serie A";
                 season = $("#season").val();
             }
-            if (this.value == "SerieB") {
+            if (this.value === "SerieB") {
                 countryx = "Italy";
                 leaguex = "Serie B";
                 season = $("#season").val();
             }
-            if (this.value == "Eredivise") {
+            if (this.value === "Eredivise") {
                 countryx = "Netherlands";
                 leaguex = "Eredivisie";
                 season = $("#season").val();
             }
-            if (this.value == "Ligue1") {
+            if (this.value === "Ligue1") {
                 countryx = "France";
                 leaguex = "Ligue 1";
                 season = $("#season").val();
             }
-            if (this.value == "PrimeiraLiga") {
-                (countryx = "Portugal"), "Primeira Liga";
+            if (this.value === "PrimeiraLiga") {
+                countryx = "Portugal";
                 leaguex = "Primeira Liga";
                 season = $("#season").val();
             }
@@ -92,9 +90,9 @@ $(function () {
 });
 
 async function getContent(countryx, leaguex, season) {
-    var yyyy = season;
-    var country = countryx;
-    var data = [];
+    let yyyy = season;
+    let country = countryx;
+    let data = [];
 
     await $.ajax({
         url: "/fetch_leagues",
@@ -228,14 +226,11 @@ async function getContent(countryx, leaguex, season) {
     }
 }
 
-$("#refresh").click(function () {
-    var season = $("#season").val();
+$("#refresh").on('click', function () {
+    let season = $("#season").val();
     getContent(countryx, leaguex, season);
-});
-
-$("#refresh").click(function () {
     $(this).addClass("fa-spin");
-    var $el = $(this);
+    let $el = $(this);
     setTimeout(function () {
         $el.removeClass("fa-spin");
     }, 1000);
