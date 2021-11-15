@@ -1,136 +1,200 @@
 <%- include('head.ejs'); %>
 <body>
-  <%- include('header.ejs'); %>
-	<div class="container-fluid">
-		<div class="card" id="card_home" style="background: rgb(255, 255, 255, 1); box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 15px;">
-			<div class="card-header" style="text-align: center;">
-        <h2>Live Scores</h2>
-      </div>
-      
-	<div class="card-body">
-        <div class="date_card">
-          <i class="fas fa-angle-double-left" id="back_day" style="padding-right: 5px; cursor: pointer;"></i>
-          <input type="date" id="date_list" class="select-list" tabindex="1" min="2018-01-01" max="2023-01-01">
-          <i class="fas fa-angle-double-right" id="forward_day" style="padding-left: 5px; cursor: pointer;"></i>
-          <span class="refreshIconHome"><i class="fas fa-sync-alt" id="refresh" style="cursor: pointer;"></i></span>
+<%- include('header.ejs'); %>
+<div class="container-fluid">
+    <div class="card" id="card_home"
+         style="background: rgb(255, 255, 255, 1); box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 15px;">
+        <div class="card-header" style="text-align: center;">
+            <h2>Live Scores</h2>
         </div>
-        
-        <div id="list1" class="dropdown-check-list" tabindex="2" style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
-          <span class="anchor">Choose Leagues</span>
-          <ul class="items">
-            <li id="worldHeader" class="dropdown-header">World<img src="https://nicklyss.com/wp-content/uploads/2020/11/world.png" style="padding-left: 5px; width:15%;height:15%;"></li>
-            <li id="friendliesCheckbox"><input type="checkbox" name="league-type" value="Friendlies" checked/> International Friendlies</li> 
-            <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="WorldCupQual" checked/> World Cup Qualification</li> 
-            <li id="europeHeader" class="dropdown-header">Europe<img src="https://media.api-sports.io/flags/eu.svg" style="padding-left: 5px; width:15%;height:15%;"></li>
-            <li id="euroCheckbox"><input type="checkbox" name="league-type" value="Euro" checked/> UEFA Euro</li> 
-            <li id="nationsCheckbox"><input type="checkbox" name="league-type" value="NationsLeague" checked/> Nations League</li> 
-            <li id="championsCheckbox"><input type="checkbox" name="league-type" value="ChampionsLeague" checked/> Champions League</li> 
-            <li id="europaCheckbox"><input type="checkbox" name="league-type" value="EuropaLeague" checked/> Europa League</li>
-            <li id="englandHeader" class="dropdown-header">England<img src="https://media.api-sports.io/flags/gb.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li id="premierCheckbox"><input type="checkbox" name="league-type" value="PremierLeague" checked/> Premier League </li>
-            <li id="championshipCheckbox"><input type="checkbox" name="league-type" value="Championship" checked/> Championship </li>
-            <li id="leagueoneCheckbox"><input type="checkbox" name="league-type" value="LeagueOne" checked/> League One </li>
-            <li id="facupCheckbox"><input type="checkbox" name="league-type" value="FACup" checked/> FA Cup </li>
-            <li id="leaguecupCheckbox"><input type="checkbox" name="league-type" value="LeagueCup" checked/> League Cup </li>
-            <li id="germanyHeader" class="dropdown-header">Germany<img src="https://media.api-sports.io/flags/de.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li id="bundesligaCheckbox"><input type="checkbox" name="league-type" value="Bundesliga" checked/> Bundesliga</li>
-            <li id="bundesliga2Checkbox"><input type="checkbox" name="league-type" value="Bundesliga2" checked/> Bundesliga 2</li>
-            <li id="liga3Checkbox"><input type="checkbox" name="league-type" value="Liga3" checked/> Liga 3</li>
-            <li id="dfbpokalCheckbox"><input type="checkbox" name="league-type" value="DFBPokal" checked/> DFB Pokal</li>
-            <li id="spainHeader" class="dropdown-header">Spain<img src="https://media.api-sports.io/flags/es.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li id="laligaCheckbox"><input type="checkbox" name="league-type" value="LaLiga" checked/> La Liga</li>
-            <li id="laliga2Checkbox"><input type="checkbox" name="league-type" value="LaLiga2" checked/> La Liga 2</li>
-            <li id="copadelreyCheckbox"><input type="checkbox" name="league-type" value="CopaDelRey" checked/> Copa Del Rey</li>
-            <li id="italyHeader" class="dropdown-header">Italy<img src="https://media.api-sports.io/flags/it.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li id="serieaCheckbox"><input type="checkbox" name="league-type" value="SerieA" checked/> Serie A </li>
-            <li id="seriebCheckbox"><input type="checkbox" name="league-type" value="SerieB" checked/> Serie B </li>
-            <li id="coppaitaliaCheckbox"><input type="checkbox" name="league-type" value="CoppaItalia" checked/> Coppa Italia </li>
-            <li id="netherlandsHeader" class="dropdown-header">Netherlands<img src="https://media.api-sports.io/flags/nl.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li id="erediviseCheckbox"><input type="checkbox" name="league-type" value="Eredivise" checked/> Eredivise</li>
-            <li id="knvbcupCheckbox"><input type="checkbox" name="league-type" value="KNVBCup" checked/> KNVB Cup</li>
-            <li id="franceHeader" class="dropdown-header">France<img src="https://media.api-sports.io/flags/fr.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li id="ligue1Checkbox"><input type="checkbox" name="league-type" value="Ligue1" checked/> Ligue 1</li>
-            <li id="coupedefranceCheckbox"><input type="checkbox" name="league-type" value="CoupeDeFrance" checked/> Coupe de France</li>
-            <li id="portugalHeader" class="dropdown-header">Portugal<img src="https://media.api-sports.io/flags/pt.svg" style="padding-left: 5px; width:15%;height:15%;"></li> 
-            <li id="primeiraligaCheckbox"><input type="checkbox" name="league-type" value="PrimeiraLiga" checked/> Primeira Liga</li>
-            <li id="noGamesAvailable" class="noGamesAvailable">No games available<br>for selected date</li>
-          </ul>
+
+        <div class="card-body">
+            <div class="date_card">
+                <i class="fas fa-angle-double-left" id="back_day" style="padding-right: 5px; cursor: pointer;"></i>
+                <input type="date" id="date_list" class="select-list" tabindex="1" min="2018-01-01" max="2023-01-01">
+                <i class="fas fa-angle-double-right" id="forward_day" style="padding-left: 5px; cursor: pointer;"></i>
+                <span class="refreshIconHome"><i class="fas fa-sync-alt" id="refresh"
+                                                 style="cursor: pointer;"></i></span>
+            </div>
+
+            <div id="list1" class="dropdown-check-list" tabindex="2"
+                 style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
+                <span class="anchor">Choose Leagues</span>
+                <ul class="items">
+                    <li id="worldHeader" class="dropdown-header">World<img
+                                src="https://nicklyss.com/wp-content/uploads/2020/11/world.png"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="friendliesCheckbox"><input type="checkbox" name="league-type" value="Friendlies" checked/>
+                        International Friendlies
+                    </li>
+                    <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="WorldCupQual" checked/>
+                        World Cup Qualification
+                    </li>
+                    <li id="europeHeader" class="dropdown-header">Europe<img
+                                src="https://media.api-sports.io/flags/eu.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="euroCheckbox"><input type="checkbox" name="league-type" value="Euro" checked/> UEFA Euro
+                    </li>
+                    <li id="nationsCheckbox"><input type="checkbox" name="league-type" value="NationsLeague" checked/>
+                        Nations League
+                    </li>
+                    <li id="championsCheckbox"><input type="checkbox" name="league-type" value="ChampionsLeague"
+                                                      checked/> Champions League
+                    </li>
+                    <li id="europaCheckbox"><input type="checkbox" name="league-type" value="EuropaLeague" checked/>
+                        Europa League
+                    </li>
+                    <li id="englandHeader" class="dropdown-header">England<img
+                                src="https://media.api-sports.io/flags/gb.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="premierCheckbox"><input type="checkbox" name="league-type" value="PremierLeague" checked/>
+                        Premier League
+                    </li>
+                    <li id="championshipCheckbox"><input type="checkbox" name="league-type" value="Championship"
+                                                         checked/> Championship
+                    </li>
+                    <li id="leagueoneCheckbox"><input type="checkbox" name="league-type" value="LeagueOne" checked/>
+                        League One
+                    </li>
+                    <li id="facupCheckbox"><input type="checkbox" name="league-type" value="FACup" checked/> FA Cup</li>
+                    <li id="leaguecupCheckbox"><input type="checkbox" name="league-type" value="LeagueCup" checked/>
+                        League Cup
+                    </li>
+                    <li id="germanyHeader" class="dropdown-header">Germany<img
+                                src="https://media.api-sports.io/flags/de.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="bundesligaCheckbox"><input type="checkbox" name="league-type" value="Bundesliga" checked/>
+                        Bundesliga
+                    </li>
+                    <li id="bundesliga2Checkbox"><input type="checkbox" name="league-type" value="Bundesliga2" checked/>
+                        Bundesliga 2
+                    </li>
+                    <li id="liga3Checkbox"><input type="checkbox" name="league-type" value="Liga3" checked/> Liga 3</li>
+                    <li id="dfbpokalCheckbox"><input type="checkbox" name="league-type" value="DFBPokal" checked/> DFB
+                        Pokal
+                    </li>
+                    <li id="spainHeader" class="dropdown-header">Spain<img
+                                src="https://media.api-sports.io/flags/es.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="laligaCheckbox"><input type="checkbox" name="league-type" value="LaLiga" checked/> La Liga
+                    </li>
+                    <li id="laliga2Checkbox"><input type="checkbox" name="league-type" value="LaLiga2" checked/> La Liga
+                        2
+                    </li>
+                    <li id="copadelreyCheckbox"><input type="checkbox" name="league-type" value="CopaDelRey" checked/>
+                        Copa Del Rey
+                    </li>
+                    <li id="italyHeader" class="dropdown-header">Italy<img
+                                src="https://media.api-sports.io/flags/it.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="serieaCheckbox"><input type="checkbox" name="league-type" value="SerieA" checked/> Serie A
+                    </li>
+                    <li id="seriebCheckbox"><input type="checkbox" name="league-type" value="SerieB" checked/> Serie B
+                    </li>
+                    <li id="coppaitaliaCheckbox"><input type="checkbox" name="league-type" value="CoppaItalia" checked/>
+                        Coppa Italia
+                    </li>
+                    <li id="netherlandsHeader" class="dropdown-header">Netherlands<img
+                                src="https://media.api-sports.io/flags/nl.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="erediviseCheckbox"><input type="checkbox" name="league-type" value="Eredivise" checked/>
+                        Eredivise
+                    </li>
+                    <li id="knvbcupCheckbox"><input type="checkbox" name="league-type" value="KNVBCup" checked/> KNVB
+                        Cup
+                    </li>
+                    <li id="franceHeader" class="dropdown-header">France<img
+                                src="https://media.api-sports.io/flags/fr.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="ligue1Checkbox"><input type="checkbox" name="league-type" value="Ligue1" checked/> Ligue 1
+                    </li>
+                    <li id="coupedefranceCheckbox"><input type="checkbox" name="league-type" value="CoupeDeFrance"
+                                                          checked/> Coupe de France
+                    </li>
+                    <li id="portugalHeader" class="dropdown-header">Portugal<img
+                                src="https://media.api-sports.io/flags/pt.svg"
+                                style="padding-left: 5px; width:15%;height:15%;"></li>
+                    <li id="primeiraligaCheckbox"><input type="checkbox" name="league-type" value="PrimeiraLiga"
+                                                         checked/> Primeira Liga
+                    </li>
+                    <li id="noGamesAvailable" class="noGamesAvailable">No games available<br>for selected date</li>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                var checkList = document.getElementById('list1');
+                checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+                    if (checkList.classList.contains('visible'))
+                        checkList.classList.remove('visible');
+                    else
+                        checkList.classList.add('visible');
+                }
+            </script>
+            <div id="Euro" class="Euro">
+            </div>
+            <div id="Friendlies" class="Friendlies">
+            </div>
+            <div id="WorldCupQualEuro" class="WorldCupQual">
+            </div>
+            <div id="WorldCupQualAsia" class="WorldCupQual">
+            </div>
+            <div id="WorldCupQualSA" class="WorldCupQual">
+            </div>
+            <div id="WorldCupQualAfrica" class="WorldCupQual">
+            </div>
+            <div id="WorldCupQualNA" class="WorldCupQual">
+            </div>
+            <div id="NationsLeague" class="NationsLeague">
+            </div>
+            <div id="ChampionsLeague" class="ChampionsLeague">
+            </div>
+            <div id="EuropaLeague" class="EuropaLeague">
+            </div>
+            <div id="England_PremierLeague" class="PremierLeague">
+            </div>
+            <div id="England_Championship" class="Championship">
+            </div>
+            <div id="England_LeagueOne" class="LeagueOne">
+            </div>
+            <div id="England_LeagueCup" class="LeagueCup">
+            </div>
+            <div id="England_FACup" class="FACup">
+            </div>
+            <div id="Germany_Bundesliga" class="Bundesliga">
+            </div>
+            <div id="Germany_Bundesliga2" class="Bundesliga2">
+            </div>
+            <div id="Germany_Liga3" class="Liga3">
+            </div>
+            <div id="Germany_DFBPokal" class="DFBPokal">
+            </div>
+            <div id="Spain_LaLiga" class="LaLiga">
+            </div>
+            <div id="Spain_LaLiga2" class="LaLiga2">
+            </div>
+            <div id="Spain_CopaDelRey" class="CopaDelRey">
+            </div>
+            <div id="Italy_SerieA" class="SerieA">
+            </div>
+            <div id="Italy_SerieB" class="SerieB">
+            </div>
+            <div id="Italy_CoppaItalia" class="CoppaItalia">
+            </div>
+            <div id="Netherlands_Eredivisie" class="Eredivise">
+            </div>
+            <div id="Netherlands_KNVBCup" class="KNVBCup">
+            </div>
+            <div id="France_Ligue1" class="Ligue1">
+            </div>
+            <div id="France_CoupeDeFrance" class="CoupeDeFrance">
+            </div>
+            <div id="Portugal_PrimeiraLiga" class="PrimeiraLiga">
+            </div>
+            <div id="no_games" class="no_games"></div>
+            <div id="only_live" class="only_live"></div>
         </div>
-            
-        <script type="text/javascript">
-          var checkList = document.getElementById('list1');
-          checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
-            if (checkList.classList.contains('visible'))
-              checkList.classList.remove('visible');
-            else
-              checkList.classList.add('visible');
-          }
-        </script>
-        <div id="Euro" class="Euro">
-        </div>
-        <div id="Friendlies" class="Friendlies">
-        </div>
-        <div id="WorldCupQualEuro" class="WorldCupQual">
-        </div>
-        <div id="WorldCupQualAsia" class="WorldCupQual">
-        </div>
-        <div id="WorldCupQualSA" class="WorldCupQual">
-        </div>
-        <div id="WorldCupQualAfrica" class="WorldCupQual">
-        </div>
-        <div id="WorldCupQualNA" class="WorldCupQual">
-        </div>
-        <div id="NationsLeague" class="NationsLeague">
-        </div>
-        <div id="ChampionsLeague" class="ChampionsLeague">
-        </div>
-        <div id="EuropaLeague" class="EuropaLeague">
-        </div>
-        <div id="England_PremierLeague" class="PremierLeague">
-        </div>
-        <div id="England_Championship" class="Championship">
-        </div>
-        <div id="England_LeagueOne" class="LeagueOne">
-        </div>
-        <div id="England_LeagueCup" class="LeagueCup">  
-        </div>
-        <div id="England_FACup" class="FACup">  
-        </div>
-        <div id="Germany_Bundesliga" class="Bundesliga">
-        </div>
-        <div id="Germany_Bundesliga2" class="Bundesliga2">
-        </div>
-        <div id="Germany_Liga3" class="Liga3">  
-        </div>
-        <div id="Germany_DFBPokal" class="DFBPokal">  
-        </div>
-        <div id="Spain_LaLiga" class="LaLiga">
-        </div>
-        <div id="Spain_LaLiga2" class="LaLiga2">
-        </div>
-        <div id="Spain_CopaDelRey" class="CopaDelRey">  
-        </div>
-        <div id="Italy_SerieA" class="SerieA"> 
-        </div>
-        <div id="Italy_SerieB" class="SerieB"> 
-        </div>
-        <div id="Italy_CoppaItalia" class="CoppaItalia">   
-        </div>
-        <div id="Netherlands_Eredivisie" class="Eredivise">
-        </div>
-        <div id="Netherlands_KNVBCup" class="KNVBCup">
-        </div>
-        <div id="France_Ligue1" class="Ligue1">
-        </div>
-        <div id="France_CoupeDeFrance" class="CoupeDeFrance">
-        </div>
-        <div id="Portugal_PrimeiraLiga" class="PrimeiraLiga">
-        </div>
-        <div id="no_games" class="no_games"></div>
-        <div id="only_live" class="only_live"></div>
-			</div>
-		</div>
-	</div>
+    </div>
+</div>
 
 <%- include('footer.ejs'); %>
 <!-- Homejs -->

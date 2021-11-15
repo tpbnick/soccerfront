@@ -1,53 +1,62 @@
 <%- include('head.ejs'); %>
 <body>
-  <%- include('header.ejs'); %>
-  <div style="text-align: center;font-size:larger;padding-top: 25px;">
-    <label for="league" style="color: white;">Choose League :  </label>
-    <select id="league" name="league" class="select" data-filter="true" type="button" style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
+<%- include('header.ejs'); %>
+<div style="text-align: center;font-size:larger;padding-top: 25px;">
+    <label for="league" style="color: white;">Choose League : </label>
+    <select id="league" name="league" class="select" data-filter="true"
+            style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
         <optgroup label="England">
-        <option value="PremierLeague"> Premier League</option> 
-        <option value="Championship"> Championship</option>
-        <option value="LeagueOne"> League One</option>
+            <option value="PremierLeague"> Premier League</option>
+            <option value="Championship"> Championship</option>
+            <option value="LeagueOne"> League One</option>
+        </optgroup>
         <optgroup label="Germany">
-        <option value="Bundesliga"> Bundesliga</option>
-        <option value="Bundesliga2"> Bundesliga 2</option>  
-        <option value="3Liga"> 3. Liga</option>  
+            <option value="Bundesliga"> Bundesliga</option>
+            <option value="Bundesliga2"> Bundesliga 2</option>
+        </optgroup>
+        <option value="3Liga"> 3. Liga</option>
         <optgroup label="Spain">
-        <option value="LaLiga"> La Liga</option>
-        <option value="LaLiga2"> Segunda Division</option>
-        <optgroup label="Italy"> 
-        <option value="SerieA"> Serie A</option> 
-        <option value="SerieB"> Serie B</option> 
+            <option value="LaLiga"> La Liga</option>
+            <option value="LaLiga2"> Segunda Division</option>
+        </optgroup>
+        <optgroup label="Italy">
+            <option value="SerieA"> Serie A</option>
+            <option value="SerieB"> Serie B</option>
+        </optgroup>
         <optgroup label="Netherlands">
-        <option value="Eredivise"> Eredivise</option>
-        <optgroup label="France"> 
-        <option value="Ligue1"> Ligue 1</option>  
+            <option value="Eredivise"> Eredivise</option>
+        </optgroup>
+        <optgroup label="France">
+            <option value="Ligue1"> Ligue 1</option>
+        </optgroup>
         <optgroup label="Portugal">
-        <option value="PrimeiraLiga"> Primeira Liga</option>  
+            <option value="PrimeiraLiga"> Primeira Liga</option>
+        </optgroup>
     </select>
-    <label for="season" style="color: white; padding-left:20px;">Season :  </label>
-    <select id="season" name="season" class="select" data-filter="true" type="button" style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
-      <option value="2021"> 2021-2022</option>
-      <option value="2020"> 2020-2021</option>
-      <option value="2019"> 2019-2020</option>
-      <option value="2018"> 2018-2019</option>
-      <option value="2017"> 2017-2018</option>
-      <option value="2016"> 2016-2017</option>
-      <option value="2015"> 2015-2016</option>
-      <option value="2014"> 2014-2015</option>
-      <option value="2013"> 2013-2014</option>
-
+    <label for="season" style="color: white; padding-left:20px;">Season : </label>
+    <select id="season" name="season" class="select" data-filter="true" type="button"
+            style="margin: 0; font-family: inherit; font-size: 1rem; line-height: inherit; padding: 5px;background-color: #4C566A; color: white; border-radius: 5px; width: 200px; border-color: #434C5E; font-weight: normal;">
+        <option value="2021"> 2021-2022</option>
+        <option value="2020"> 2020-2021</option>
+        <option value="2019"> 2019-2020</option>
+        <option value="2018"> 2018-2019</option>
+        <option value="2017"> 2017-2018</option>
+        <option value="2016"> 2016-2017</option>
+        <option value="2015"> 2015-2016</option>
+        <option value="2014"> 2014-2015</option>
+        <option value="2013"> 2013-2014</option>
     </select>
     <span class="refreshIcon">
     <i class="fas fa-sync-alt" id="refresh" style="cursor: pointer; color:#d8dee9;"></i>
     </span>
-  </div>
-	<div class="container-fluid">
-        <div class="card" id="card_league_table" style="background: rgb(255, 255, 255, 1); box-shadow: 5px 5px 5px #374452; border-radius: 15px;">
-			      <div class="card-header" id="league_logo" style="text-align: left;display: inline-flex;"></div>      
-            <div class="card-body" id="league_table"></div>
-		    </div>
-	</div>
+</div>
+<div class="container-fluid">
+    <div class="card" id="card_league_table"
+         style="background: rgb(255, 255, 255, 1); box-shadow: 5px 5px 5px #374452; border-radius: 15px;">
+        <div class="card-header" id="league_logo" style="text-align: left;display: inline-flex;"></div>
+        <div class="card-body" id="league_table"></div>
+    </div>
+</div>
 
 <%- include('footer.ejs'); %>
 <!-- Leaguejs -->
