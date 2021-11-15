@@ -45,22 +45,6 @@ $(function () {
         $("#date_list").html(content_date);
         getContent();
     });
-
-    $.ajax({
-        url: "/fetch_fixtures",
-        method: "POST",
-        headers: {
-            Accept: "application/json; odata=verbose",
-            "Content-Type": "application/json; odata=verbose",
-        },
-        data: JSON.stringify({
-            the_date: current_date,
-        }),
-        processData: false,
-        success: function (res) {
-            appendContent(res.api.fixtures);
-        },
-    });
     var interval = 0; //Auto Update Checkbox in header
     $("#auto_refresh_checkbox").change(function () {
         if ($("#auto_refresh_checkbox:checked").length > 0) {
@@ -109,13 +93,13 @@ function getContent() {
         processData: false,
         success: function (res) {
             appendContent(res.api.fixtures);
-            listCheck();
             $("#refresh").addClass("fa-spin");
             let $el = $("#refresh");
             setTimeout(function () {
                 $el.removeClass("fa-spin");
             }, 1000);
             tableCheck();
+            listCheck();
         },
     });
 }
