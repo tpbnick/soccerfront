@@ -26,21 +26,20 @@ $(function () {
     });
 
     $("#forward_day").on('click', function () {
-        var content_date = document.getElementById("date_list").value;
-        var current_date = new Date(content_date);
+        content_date = document.getElementById("date_list").value;
+        current_date = new Date(content_date);
         current_date.setDate(current_date.getDate() + 2);
-        var formatted_date = formatDate(current_date);
-        // $('#date_list').attr('value', formatted_date);
+        formatted_date = formatDate(current_date);
         $("#date_list").val(formatted_date);
         $("#date_list").html(content_date);
         getContent();
     });
 
     $("#back_day").on('click', function () {
-        var content_date = document.getElementById("date_list").value;
-        var current_date = new Date(content_date);
+        content_date = document.getElementById("date_list").value;
+        current_date = new Date(content_date);
         current_date.setDate(current_date.getDate());
-        var formatted_date = formatDate(current_date);
+        formatted_date = formatDate(current_date);
         $("#date_list").val(formatted_date);
         $("#date_list").html(content_date);
         getContent();
@@ -108,131 +107,131 @@ function appendContent(data) {
     //england
     let data_PremierLeague = (data || []).filter(
         (item) =>
-            item.league.country == "England" && item.league.name == "Premier League"
+            item.league.country === "England" && item.league.name === "Premier League"
     );
     let data_Championship = (data || []).filter(
         (item) =>
-            item.league.country == "England" && item.league.name == "Championship"
+            item.league.country === "England" && item.league.name === "Championship"
     );
     let data_LeagueOne = (data || []).filter(
         (item) =>
-            item.league.country == "England" && item.league.name == "League One"
+            item.league.country === "England" && item.league.name === "League One"
     );
     let data_FACup = (data || []).filter(
-        (item) => item.league.country == "England" && item.league.name == "FA Cup"
+        (item) => item.league.country === "England" && item.league.name === "FA Cup"
     );
     let data_LeagueCup = (data || []).filter(
         (item) =>
-            item.league.country == "England" && item.league.name == "League Cup"
+            item.league.country === "England" && item.league.name === "League Cup"
     );
     //germany
     let data_Bundesliga = (data || []).filter(
         (item) =>
-            item.league.country == "Germany" && item.league.name == "Bundesliga 1"
+            item.league.country === "Germany" && item.league.name === "Bundesliga 1"
     );
     let data_Bundesliga2 = (data || []).filter(
         (item) =>
-            item.league.country == "Germany" && item.league.name == "Bundesliga 2"
+            item.league.country === "Germany" && item.league.name === "Bundesliga 2"
     );
     let data_Liga3 = (data || []).filter(
-        (item) => item.league.country == "Germany" && item.league.name == "Liga 3"
+        (item) => item.league.country === "Germany" && item.league.name === "Liga 3"
     );
     let data_DFBPokal = (data || []).filter(
         (item) =>
-            item.league.country == "Germany" && item.league.name == "DFB Pokal"
+            item.league.country === "Germany" && item.league.name === "DFB Pokal"
     );
     //spain
     let data_LaLiga = (data || []).filter(
-        (item) => item.league.country == "Spain" && item.league.name == "La Liga"
+        (item) => item.league.country === "Spain" && item.league.name === "La Liga"
     );
     let data_LaLiga2 = (data || []).filter(
         (item) =>
-            item.league.country == "Spain" && item.league.name == "Segunda Division"
+            item.league.country === "Spain" && item.league.name === "Segunda Division"
     );
     let data_CopaDelRey = (data || []).filter(
         (item) =>
-            item.league.country == "Spain" && item.league.name == "Copa del Rey"
+            item.league.country === "Spain" && item.league.name === "Copa del Rey"
     );
     //italy
     let data_SerieA = (data || []).filter(
-        (item) => item.league.country == "Italy" && item.league.name == "Serie A"
+        (item) => item.league.country === "Italy" && item.league.name === "Serie A"
     );
     let data_SerieB = (data || []).filter(
-        (item) => item.league.country == "Italy" && item.league.name == "Serie B"
+        (item) => item.league.country === "Italy" && item.league.name === "Serie B"
     );
     let data_CoppaItalia = (data || []).filter(
         (item) =>
-            item.league.country == "Italy" && item.league.name == "Coppa Italia"
+            item.league.country === "Italy" && item.league.name === "Coppa Italia"
     );
     //netherlands
     let data_Eredivisie = (data || []).filter(
         (item) =>
-            item.league.country == "Netherlands" && item.league.name == "Eredivisie"
+            item.league.country === "Netherlands" && item.league.name === "Eredivisie"
     );
     let data_KNVBCup = (data || []).filter(
         (item) =>
-            item.league.country == "Netherlands" && item.league.name == "KNVB Beker"
+            item.league.country === "Netherlands" && item.league.name === "KNVB Beker"
     );
     //france
     let data_league1 = (data || []).filter(
-        (item) => item.league.country == "France" && item.league.name == "Ligue 1"
+        (item) => item.league.country === "France" && item.league.name === "Ligue 1"
     );
     let data_CoupeDeFrance = (data || []).filter(
         (item) =>
-            item.league.country == "France" && item.league.name == "Coupe De France"
+            item.league.country === "France" && item.league.name === "Coupe De France"
     );
     //portugal
     let data_PremieraLiga = (data || []).filter(
         (item) =>
-            item.league.country == "Portugal" && item.league.name == "Primeira Liga"
+            item.league.country === "Portugal" && item.league.name === "Primeira Liga"
     );
     //europe
     let data_Euro = (data || []).filter(
         (item) =>
-            item.league.country == "World" && item.league.name == "Euro Championship"
+            item.league.country === "World" && item.league.name === "Euro Championship"
     );
     let data_NationsLeague = (data || []).filter(
         (item) =>
-            item.league.country == "World" &&
-            item.league.name == "UEFA Nations League"
+            item.league.country === "World" &&
+            item.league.name === "UEFA Nations League"
     );
     let data_ChampionsLeague = (data || []).filter(
         (item) =>
-            item.league.country == "World" &&
-            item.league.name == "UEFA Champions League"
+            item.league.country === "World" &&
+            item.league.name === "UEFA Champions League"
     );
     let data_EuropaLeague = (data || []).filter(
         (item) =>
-            item.league.country == "World" && item.league.name == "UEFA Europa League"
+            item.league.country === "World" && item.league.name === "UEFA Europa League"
     );
     //world
     let data_Friendlies = (data || []).filter(
-        (item) => item.league.country == "World" && item.league.name == "Friendlies"
+        (item) => item.league.country === "World" && item.league.name === "Friendlies"
     );
     let data_WorldCupQualEuro = (data || []).filter(
         (item) =>
-            item.league.country == "World" &&
-            item.league.name == "World Cup - Qualification Europe"
+            item.league.country === "World" &&
+            item.league.name === "World Cup - Qualification Europe"
     );
     let data_WorldCupQualAsia = (data || []).filter(
         (item) =>
-            item.league.country == "World" &&
-            item.league.name == "World Cup - Qualification Asia"
+            item.league.country === "World" &&
+            item.league.name === "World Cup - Qualification Asia"
     );
     let data_WorldCupQualSA = (data || []).filter(
         (item) =>
-            item.league.country == "World" &&
-            item.league.name == "World Cup - Qualification South America"
+            item.league.country === "World" &&
+            item.league.name === "World Cup - Qualification South America"
     );
     let data_WorldCupQualAfrica = (data || []).filter(
         (item) =>
-            item.league.country == "World" &&
-            item.league.name == "World Cup - Qualification Africa"
+            item.league.country === "World" &&
+            item.league.name === "World Cup - Qualification Africa"
     );
     let data_WorldCupQualNA = (data || []).filter(
         (item) =>
-            item.league.country == "World" &&
-            item.league.name == "World Cup - Qualification CONCACAF"
+            item.league.country === "World" &&
+            item.league.name === "World Cup - Qualification CONCACAF"
     );
 
     let content_Euro = getContent_item("UEFA European Championship", data_Euro);
@@ -384,7 +383,7 @@ function appendContent(data) {
 }
 
 function getContent_item(league_name, data) {
-    if (data.length == 0) {
+    if (data.length === 0) {
         return null;
     }
     let content =
@@ -569,10 +568,8 @@ function listCheck() {
     }
     if (euroEmpty && nationsEmpty && championsEmpty && europaEmpty) {
         $("#europeHeader").addClass("noContentList");
-        var europeEmpty = true;
     } else {
         $("#europeHeader").removeClass("noContentList");
-        var europeEmpty = false;
     }
     // England data check
     if ($("#England_PremierLeague").is(":empty")) {
