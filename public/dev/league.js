@@ -234,4 +234,5 @@ $("#refresh").on('click', function () {
     setTimeout(function () {
         $el.removeClass("fa-spin");
     }, 1000);
+    vNotify.success({title:'League Table Refreshed'});
 });

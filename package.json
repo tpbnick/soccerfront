@@ -1,0 +1,28 @@
+{
+  "name": "soccerfront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon node app.js",
+    "dev": "concurrently \"npm run start \"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "mongoose": "^5.10.10",
+    "node-fetch": "^2.6.6",
+    "nodemon": "^2.0.15",
+    "require": "^0.4.4",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0"
+  }
+}

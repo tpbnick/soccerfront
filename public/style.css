@@ -155,7 +155,7 @@ tr {
 }
 
 .card-body {
-    max-height: 590px;
+    max-height: 600px;
     overflow-x: hidden;
     overflow-y: auto;
 }

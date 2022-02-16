@@ -23,6 +23,7 @@ $(function () {
 
     $("#refresh").on('click', function () {
         getContent();
+        vNotify.success({position: "positionOption.center", title:'Games Refreshed'});
     });
 
     $("#forward_day").on('click', function () {
@@ -52,10 +53,12 @@ $(function () {
                 getContent();
                 console.log("--content updated--");
             }, 60000);
+            vNotify.success({title:'Auto Refresh - On'});
         } else {
             if (interval !== 0) {
                 clearInterval(interval);
                 console.log("--content updating stopped--");
+                vNotify.error({title:'Auto Refresh - Off'});
             }
         }
     });
