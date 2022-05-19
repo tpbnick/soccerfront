@@ -64,7 +64,7 @@ $(function () {
     });
 
     $('input[type="checkbox"]').click(function () {
-        var inputValue = $(this).attr("value");
+        let inputValue = $(this).attr("value");
         $("." + inputValue).toggle();
     });
 
@@ -407,7 +407,7 @@ function getContent_item(league_name, data) {
             gameTime = e.statusShort;
         } else if (e.statusShort === "PEN") {
             function splitPenaltys(str, str2){
-                if (str == "home"){
+                if (str === "home"){
                     return str2.split('-')[0];
                 } else {
                     return str2.split('-')[1];
