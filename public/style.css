@@ -451,3 +451,8 @@ table.table td {
 .noGamesAvailable {
     display: none !important;
 }
+
+.league-image {
+    padding-left: 5px;
+    width:25px;
+}
