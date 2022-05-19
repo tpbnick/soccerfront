@@ -372,7 +372,7 @@ input:checked + .slider:before {
 .table td,
 .table th {
     padding: 1.2%;
-    vertical-align: top;
+    vertical-align: middle !important;
     font-size: 1.1rem;
 }
 
