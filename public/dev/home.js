@@ -406,7 +406,18 @@ function getContent_item(league_name, data) {
         } else if (e.statusShort === "AET") {
             gameTime = e.statusShort;
         } else if (e.statusShort === "PEN") {
+            function splitPenaltys(str, str2){
+                if (str == "home"){
+                    return str2.split('-')[0];
+                } else {
+                    return str2.split('-')[1];
+                }
+            }
+            let homePens = splitPenaltys("home", e.score.penalty);
+            let awayPens = splitPenaltys("away", e.score.penalty);
             gameTime = e.statusShort;
+            goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
+            goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam + "<br>" + "(" + homePens + " - " + awayPens + ")";
         } else if (e.statusShort === "SUSP") {
             gameTime = "Suspended";
         } else if (e.statusShort === "TBD") {
