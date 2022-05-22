@@ -31,7 +31,7 @@ app.get("/register", function (req, res) {
 
 app.post("/fetch_fixtures", async function (req, res) {
     const result = await fetch(
-        `https://v2.api-football.com/fixtures/date/${req.body.the_date}?timezone=America/New_York`,
+        `https://v3.football.api-sports.io/fixtures?date=${req.body.the_date}&timezone=America/New_York`,
         {
             method: "GET",
             headers: {

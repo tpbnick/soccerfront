@@ -4,21 +4,22 @@ $(function () {
     $("#nav_login").removeClass("active");
 
     const $menu = $("#list1");
+    let dateList = $("#date_list");
 
     $(document).on('click', (e) => {
         if (
             !$menu.is(e.target) && // if the target of the click isn't the container...
             $menu.has(e.target).length === 0
         ) {
-            // ... nor inside the container
+            // ... or inside the container
             $menu.removeClass("visible");
         }
     });
 
-    var current_date = new Date();
-    var formatted_date = formatDate(current_date);
-    var content_date = document.getElementById("date_list").value;
-    $("#date_list").attr("value", formatted_date).html(content_date);
+    let current_date = new Date();
+    let formatted_date = formatDate(current_date);
+    let content_date = document.getElementById("date_list").value;
+    dateList.attr("value", formatted_date).html(content_date);
     getContent();
 
     $("#refresh").on('click', function () {
@@ -31,8 +32,8 @@ $(function () {
         current_date = new Date(content_date);
         current_date.setDate(current_date.getDate() + 2);
         formatted_date = formatDate(current_date);
-        $("#date_list").val(formatted_date);
-        $("#date_list").html(content_date);
+        dateList.val(formatted_date);
+        dateList.html(content_date);
         getContent();
     });
 
@@ -41,12 +42,12 @@ $(function () {
         current_date = new Date(content_date);
         current_date.setDate(current_date.getDate());
         formatted_date = formatDate(current_date);
-        $("#date_list").val(formatted_date);
-        $("#date_list").html(content_date);
+        dateList.val(formatted_date);
+        dateList.html(content_date);
         getContent();
     });
-    var interval = 0; //Auto Update Checkbox in header
-    $("#auto_refresh_checkbox").change(function () {
+    let interval = 0; //Auto Update Checkbox in header
+    $("#auto_refresh_checkbox").on('change', function () {
         if ($("#auto_refresh_checkbox:checked").length > 0) {
             getContent();
             interval = setInterval(function () {
@@ -63,12 +64,12 @@ $(function () {
         }
     });
 
-    $('input[type="checkbox"]').click(function () {
+    $('input[type="checkbox"]').on('click',function () {
         let inputValue = $(this).attr("value");
         $("." + inputValue).toggle();
     });
 
-    $("#date_list").change(function () {
+    dateList.on('change',function () {
         getContent();
     });
 });
@@ -94,9 +95,10 @@ function getContent() {
         }),
         processData: false,
         success: function (res) {
-            appendContent(res.api.fixtures);
-            $("#refresh").addClass("fa-spin");
-            let $el = $("#refresh");
+            let refreshButton = $("#refresh");
+            appendContent(res.response);
+            refreshButton.addClass("fa-spin");
+            let $el = refreshButton;
             setTimeout(function () {
                 $el.removeClass("fa-spin");
             }, 1000);
@@ -395,105 +397,103 @@ function getContent_item(league_name, data) {
         "</h5><hr style='height:2px;border-width:0;color:gray;background-color:gray'><table id='leagueTables' class='table table-secondary table-bordered' style='width:100%;'>";
 
     data.forEach((e) => {
-        let goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
-        let goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam;
-        let gameDate = e.event_date.slice(11, 16);
+        let goals_HomeTeam = e.goals.home == null ? "?" : e.goals.home;
+        let goals_AwayTeam = e.goals.away == null ? "?" : e.goals.away;
+        let gameDate = e.fixture.timestamp;
+        let formattedDate = (time) => {
+            let epoch = time;
+            let dateTime = new Date(epoch * 1000);
+            return String(dateTime).slice(15, 21);
+        }
         let gameTime;
-        if (e.statusShort === "NS") {
-            gameTime = gameDate + "&nbsp;";
-        } else if (e.statusShort === "FT") {
-            gameTime = e.statusShort;
-        } else if (e.statusShort === "AET") {
-            gameTime = e.statusShort;
-        } else if (e.statusShort === "PEN") {
-            function splitPenaltys(str, str2){
-                if (str === "home"){
-                    return str2.split('-')[0];
-                } else {
-                    return str2.split('-')[1];
-                }
-            }
-            let homePens = splitPenaltys("home", e.score.penalty);
-            let awayPens = splitPenaltys("away", e.score.penalty);
-            gameTime = e.statusShort;
-            goals_HomeTeam = e.goalsHomeTeam == null ? "?" : e.goalsHomeTeam;
-            goals_AwayTeam = e.goalsAwayTeam == null ? "?" : e.goalsAwayTeam + "<br>" + "(" + homePens + " - " + awayPens + ")";
-        } else if (e.statusShort === "SUSP") {
+        if (e.fixture.status.short === "NS") {
+            gameTime = formattedDate(gameDate) + "&nbsp;";
+        } else if (e.fixture.status.short === "FT") {
+            gameTime = e.fixture.status.short;
+        } else if (e.fixture.status.short === "AET") {
+            gameTime = e.fixture.status.short;
+        } else if (e.fixture.status.short === "PEN") {
+            let homePens = e.score.penalty.home;
+            let awayPens = e.score.penalty.away;
+            gameTime = e.fixture.status.short;
+            goals_HomeTeam = e.goals.home == null ? "?" : e.goals.home;
+            goals_AwayTeam = e.goals.away == null ? "?" : e.goals.away + "<br>" + "(" + homePens + " - " + awayPens + ")";
+        } else if (e.fixture.status.short === "SUSP") {
             gameTime = "Suspended";
-        } else if (e.statusShort === "TBD") {
-            gameTime = e.statusShort;
-        } else if (e.statusShort === "CANC") {
+        } else if (e.fixture.status.short === "TBD") {
+            gameTime = e.fixture.status.short;
+        } else if (e.fixture.status.short === "CANC") {
             gameTime = "Cancelled";
-        } else if (e.statusShort === "WO") {
+        } else if (e.fixture.status.short === "WO") {
             gameTime = "Cancelled";
-        } else if (e.statusShort === "INT") {
+        } else if (e.fixture.status.short === "INT") {
             gameTime = "Interrupted";
-        } else if (e.statusShort === "ABD") {
+        } else if (e.fixture.status.short === "ABD") {
             gameTime = "Abandoned";
-        } else if (e.statusShort === "BT") {
+        } else if (e.fixture.status.short === "BT") {
             gameTime = "Break" + "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
-        } else if (e.statusShort === "HT") {
+        } else if (e.fixture.status.short === "HT") {
             gameTime =
-                e.statusShort + "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
-        } else if (e.statusShort === "PST") {
+                e.fixture.status.short + "&nbsp;" + "<span class='blink_me'>(LIVE)</span>";
+        } else if (e.fixture.status.short === "PST") {
             gameTime = "Postponed";
         } else {
             gameTime =
-                e.statusShort +
+                e.fixture.status.short +
                 "&nbsp;" +
                 "-" +
                 "&nbsp;" +
-                e.elapsed +
+                e.fixture.status.elapsed +
                 "'" +
                 "&nbsp;" +
                 "<span class='blink_me'>(LIVE)</span>";
         }
-        if (e.statusShort === "CANC") {
+        if (e.fixture.status.short === "CANC") {
             content +=
                 "<tr>" +
-                "<td style='width:15%;'>" +
+                "<td style='width:20%;'>" +
                 gameTime +
                 "</td>" +
-                "<td style='width:35%;text-align:right;'>" +
-                e.homeTeam.team_name +
+                "<td style='width:32.5%;text-align:right;'>" +
+                e.teams.home.name +
                 "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" +
-                e.homeTeam.logo +
+                e.teams.home.logo +
                 "'>" +
                 "</td>" +
-                "<td style='width:15%%'>" +
+                "<td style='width:15%'>" +
                 "0" +
                 " - " +
                 "0" +
                 "</td>" +
-                "<td style='width:35%;text-align:left;'>" +
+                "<td style='width:32.5%;text-align:left;'>" +
                 "<img width='30' height='30' src='" +
-                e.awayTeam.logo +
+                e.teams.away.logo +
                 "'>&nbsp;&nbsp;&nbsp;" +
-                e.awayTeam.team_name +
+                e.teams.away.name +
                 "</td>" +
                 "</tr>";
         } else {
             content +=
                 "<tr>" +
-                "<td style='width:15%;'>" +
+                "<td style='width:20%;'>" +
                 gameTime +
                 "</td>" +
-                "<td style='width:35%;text-align:right;'>" +
-                e.homeTeam.team_name +
+                "<td style='width:32.5%;text-align:right;'>" +
+                e.teams.home.name +
                 "&nbsp;&nbsp;&nbsp;<img width='30' height='30' src='" +
-                e.homeTeam.logo +
+                e.teams.home.logo +
                 "'>" +
                 "</td>" +
-                "<td style='width:15%%'>" +
+                "<td style='width:15%'>" +
                 goals_HomeTeam +
                 " - " +
                 goals_AwayTeam +
                 "</td>" +
-                "<td style='width:35%;text-align:left;'>" +
+                "<td style='width:32.5%;text-align:left;'>" +
                 "<img width='30' height='30' src='" +
-                e.awayTeam.logo +
+                e.teams.away.logo +
                 "'>&nbsp;&nbsp;&nbsp;" +
-                e.awayTeam.team_name +
+                e.teams.away.name +
                 "</td>" +
                 "</tr>";
         }

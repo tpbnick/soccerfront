@@ -130,15 +130,15 @@ footer {
     display: block;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 750px) {
     #card_home {
-        width: 1000px;
+        width: 60%;
         margin: 50px auto auto;
         font-size: 14px;
     }
 
     #card_league_table {
-        width: 1000px;
+        width: 1200px;
         margin: 30px auto auto;
     }
 }
@@ -373,7 +373,6 @@ input:checked + .slider:before {
 .table th {
     padding: 1.2%;
     vertical-align: middle !important;
-    font-size: 1.1rem;
 }
 
 .h2,
@@ -393,6 +392,12 @@ table.table th,
 table.table td {
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
+    font-size: 1vw !important;
+}
+
+table.table img {
+    max-width: 30px;
+    height: auto;
 }
 
 .no_games {
