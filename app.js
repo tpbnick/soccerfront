@@ -47,8 +47,7 @@ app.post("/fetch_fixtures", async function (req, res) {
 
 app.post("/fetch_leagues", async function (req, res) {
     const result = await fetch(
-        `https://v2.api-football.com/leagues/country/${req.body.the_country}/${+req
-            .body.the_yyyy}`,
+        `https://v3.football.api-sports.io/leagues?country=${req.body.the_country}&season=${+req.body.the_yyyy}`,
         {
             method: "GET",
             headers: {
@@ -62,27 +61,10 @@ app.post("/fetch_leagues", async function (req, res) {
     res.json(data);
 });
 
-app.post("/fetch_leagues_else", async function (req, res) {
-    const result = await fetch(
-        `https://api-football-v1.p.rapidapi.com/v2/leagues/country/${
-            req.body.the_country
-        }/${+(req.body.the_yyyy - 1)}`,
-        {
-            method: "GET",
-            headers: {
-                "X-RapidAPI-Key": process.env.APIKEY,
-            },
-        }
-    );
-
-    const data = await result.json();
-
-    res.json(data);
-});
 
 app.post("/fetch_league_table", async function (req, res) {
     const result = await fetch(
-        `https://v2.api-football.com/leagueTable/${req.body.the_league_id_ex}`,
+        `https://v3.football.api-sports.io/standings?league=${req.body.the_league_id_ex}&season=${req.body.the_season}`,
         {
             method: "GET",
             headers: {
