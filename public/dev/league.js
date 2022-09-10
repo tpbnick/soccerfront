@@ -37,22 +37,22 @@ $(function () {
             }
             if (this.value === "Bundesliga") {
                 countryx = "Germany";
-                leaguex = "Bundesliga 1";
+                leaguex = "Bundesliga";
                 season = $("#season").val();
             }
             if (this.value === "Bundesliga2") {
                 countryx = "Germany";
-                leaguex = "Bundesliga 2";
+                leaguex = "2. Bundesliga";
                 season = $("#season").val();
             }
             if (this.value === "3Liga") {
                 countryx = "Germany";
-                leaguex = "Liga 3";
+                leaguex = "3. Liga";
                 season = $("#season").val();
             }
             if (this.value === "LaLiga2") {
                 countryx = "Spain";
-                leaguex = "Segunda Division";
+                leaguex = "Segunda División";
                 season = $("#season").val();
             }
             if (this.value === "LaLiga") {
@@ -107,43 +107,26 @@ async function getContent(countryx, leaguex, season) {
         }),
         processData: false,
         success: function (res) {
-            if (res.api.results == 0) {
-                $.ajax({
-                    url: "fetch_leagues_else",
-                    method: "POST",
-                    headers: {
-                        Accept: "application/json; odata=verbose",
-                        "Content-Type": "application/json; odata=verbose",
-                    },
-                    data: JSON.stringify({
-                        the_country: country,
-                        the_yyyy: yyyy,
-                    }),
-                    processData: false,
-                    success: function (res) {
-                        if (res.api.results !== 0) {
-                            data = res.api.leagues;
-                        }
-                    },
-                });
+            if (!res) {
+                console.log("Error getting data from API")
             } else {
-                data = res.api.leagues;
+                data = res.response;
             }
         },
     });
 
-    var league_ex = data.filter((item) => item.name == leaguex);
+    var league_ex = data.filter((item) => item.league.name == leaguex);
     var standings_ex = [];
-    if (league_ex !== []) {
-        var league_id_ex = league_ex[0].league_id;
-        var seasonYear = Number(season) + 1;
+    if (league_ex.length) {
+        var league_id_ex = league_ex[0].league.id;
+        var seasonYear = Number(season);
         var content_logo =
             "<img width='50' height='50' src='" +
-            league_ex[0].logo +
+            league_ex[0].league.logo +
             "'>&nbsp;&nbsp;&nbsp;<div><h6>" +
-            league_ex[0].country.toUpperCase() +
+            league_ex[0].country.name.toUpperCase() +
             "</h6><div class='leagueYear'><h4>" +
-            league_ex[0].name.toUpperCase() +
+            league_ex[0].league.name.toUpperCase() +
             "</h4><span>" +
             " (" +
             season +
@@ -161,15 +144,13 @@ async function getContent(countryx, leaguex, season) {
             },
             data: JSON.stringify({
                 the_league_id_ex: league_id_ex,
+                the_season: seasonYear
             }),
             processData: false,
             success: function (res) {
-                if (res.api.results !== 0) {
-                    standings_ex = res.api.standings[0];
+                if (res.response) {
+                    standings_ex = res.response[0].league.standings;
                     var content =
-                        " <p style='font-weight:bold;'>" +
-                        league_ex[0].name.toUpperCase() +
-                        "</p>" +
                         "<table style='width:100%;font-size:12px;' class='table'>" +
                         "<tr>" +
                         "<th style='width:5%'>#</th>" +
@@ -182,19 +163,19 @@ async function getContent(countryx, leaguex, season) {
                         "<th style='width:6%'>GD</th>" +
                         "<th style='width:6%'>PTS</th>" +
                         "</tr>";
-                    standings_ex.forEach((el) => {
+                    standings_ex[0].forEach((el) => {
                         content +=
                             "<tr>" +
                             "<td style='width:5%'>" +
                             el.rank +
                             "</td>" +
                             "<td style='width:50%;text-align:left;'><img class='Image TeamIcon' width='22' height='22' src='" +
-                            el.logo +
-                            "'>&nbsp;&nbsp;&nbsp;" +
-                            el.teamName +
+                            el.team.logo +
+                            "'>&nbsp;&nbsp;&nbsp;" + '<b>' +
+                            el.team.name + '</b>' +
                             "</td>" +
                             "<td style='width:5%'>" +
-                            el.all.matchsPlayed +
+                            el.all.played +
                             "</td>" +
                             "<td style='width:5%'>" +
                             el.all.win +
@@ -206,9 +187,9 @@ async function getContent(countryx, leaguex, season) {
                             el.all.lose +
                             "</td>" +
                             "<td style='width:9%'>" +
-                            el.all.goalsFor +
+                            el.all.goals.for +
                             " - " +
-                            el.all.goalsAgainst +
+                            el.all.goals.against +
                             "</td>" +
                             "<td style='width:6%'>" +
                             el.goalsDiff +
@@ -220,9 +201,14 @@ async function getContent(countryx, leaguex, season) {
                     });
                     content += "</table>";
                     $("#league_table").html(content);
+                } else {
+                    console.log("error reading data");
                 }
             },
         });
+    }
+    else {
+        console.log("error getting league data/id");
     }
 }
 
