@@ -461,3 +461,13 @@ table.table img {
     padding-left: 5px;
     width:25px;
 }
+
+.timezoneHeader{
+    margin-right: 10px;
+    background-color: #4f5669;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    margin-top: 3px;
+}
