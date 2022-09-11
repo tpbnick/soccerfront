@@ -140,14 +140,14 @@ function appendContent(data) {
     //germany
     let data_Bundesliga = (data || []).filter(
         (item) =>
-            item.league.country === "Germany" && item.league.name === "Bundesliga 1"
+            item.league.country === "Germany" && item.league.name === "Bundesliga"
     );
     let data_Bundesliga2 = (data || []).filter(
         (item) =>
-            item.league.country === "Germany" && item.league.name === "Bundesliga 2"
+            item.league.country === "Germany" && item.league.name === "2. Bundesliga"
     );
     let data_Liga3 = (data || []).filter(
-        (item) => item.league.country === "Germany" && item.league.name === "Liga 3"
+        (item) => item.league.country === "Germany" && item.league.name === "3. Liga"
     );
     let data_DFBPokal = (data || []).filter(
         (item) =>
@@ -159,7 +159,7 @@ function appendContent(data) {
     );
     let data_LaLiga2 = (data || []).filter(
         (item) =>
-            item.league.country === "Spain" && item.league.name === "Segunda Division"
+            item.league.country === "Spain" && item.league.name === "Segunda División"
     );
     let data_CopaDelRey = (data || []).filter(
         (item) =>
