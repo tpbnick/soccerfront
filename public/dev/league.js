@@ -120,6 +120,7 @@ async function getContent(countryx, leaguex, season) {
     if (league_ex.length) {
         var league_id_ex = league_ex[0].league.id;
         var seasonYear = Number(season);
+        let seasonEndYear = seasonYear + 1;
         var content_logo =
             "<img width='50' height='50' src='" +
             league_ex[0].league.logo +
@@ -131,7 +132,7 @@ async function getContent(countryx, leaguex, season) {
             " (" +
             season +
             "-" +
-            seasonYear +
+            seasonEndYear +
             ")" +
             "</span></div></div>";
         $("#league_logo").html(content_logo);
@@ -171,8 +172,8 @@ async function getContent(countryx, leaguex, season) {
                             "</td>" +
                             "<td style='width:50%;text-align:left;'><img class='Image TeamIcon' width='22' height='22' src='" +
                             el.team.logo +
-                            "'>&nbsp;&nbsp;&nbsp;" + '<b>' +
-                            el.team.name + '</b>' +
+                            "'>&nbsp;&nbsp;&nbsp;" + '<b>' + '<a href="https://www.fotmob.com/search?q=' + el.team.name + '" target="_blank">' +
+                            el.team.name + '</a>' + '</b>' +
                             "</td>" +
                             "<td style='width:5%'>" +
                             el.all.played +
