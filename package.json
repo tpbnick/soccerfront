@@ -21,7 +21,7 @@
     "fetch": "^1.1.0",
     "mongoose": "^5.10.10",
     "node-fetch": "^2.6.6",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.20",
     "require": "^0.4.4",
     "run": "^1.4.0",
     "serve-favicon": "^2.5.0",

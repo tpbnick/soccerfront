@@ -74,6 +74,14 @@ $(function () {
     });
 });
 
+var currentTimezone = localStorage["timezoneCache"] || "ET";
+$("#currentTimezoneCache").text(currentTimezone);
+
+function updateCurrentTimezoneSpan() {
+    currentTimezone = $('#timezone').find(":selected").val();
+    $("#currentTimezoneCache").text(currentTimezone);
+}
+
 function formatDate(date) {
     let dd = String(date.getDate()).padStart(2, "0");
     let mm = String(date.getMonth() + 1).padStart(2, "0"); //month is 0 indexed
@@ -132,14 +140,14 @@ function appendContent(data) {
     //germany
     let data_Bundesliga = (data || []).filter(
         (item) =>
-            item.league.country === "Germany" && item.league.name === "Bundesliga 1"
+            item.league.country === "Germany" && item.league.name === "Bundesliga"
     );
     let data_Bundesliga2 = (data || []).filter(
         (item) =>
-            item.league.country === "Germany" && item.league.name === "Bundesliga 2"
+            item.league.country === "Germany" && item.league.name === "2. Bundesliga"
     );
     let data_Liga3 = (data || []).filter(
-        (item) => item.league.country === "Germany" && item.league.name === "Liga 3"
+        (item) => item.league.country === "Germany" && item.league.name === "3. Liga"
     );
     let data_DFBPokal = (data || []).filter(
         (item) =>
@@ -151,7 +159,7 @@ function appendContent(data) {
     );
     let data_LaLiga2 = (data || []).filter(
         (item) =>
-            item.league.country === "Spain" && item.league.name === "Segunda Division"
+            item.league.country === "Spain" && item.league.name === "Segunda División"
     );
     let data_CopaDelRey = (data || []).filter(
         (item) =>
@@ -213,6 +221,11 @@ function appendContent(data) {
     let data_Friendlies = (data || []).filter(
         (item) => item.league.country === "World" && item.league.name === "Friendlies"
     );
+    let data_WorldCup = (data || []).filter(
+        (item) =>
+            item.league.country === "World" &&
+            item.league.name === "World Cup"
+    );
     let data_WorldCupQualEuro = (data || []).filter(
         (item) =>
             item.league.country === "World" &&
@@ -238,17 +251,18 @@ function appendContent(data) {
             item.league.country === "World" &&
             item.league.name === "World Cup - Qualification CONCACAF"
     );
-    let data_WorldCup= (data || []).filter(
-        (item) =>
-            item.league.country === "World" &&
-            item.league.name === "World Cup"
-    );
 
     let content_Euro = getContent_item("UEFA European Championship", data_Euro);
     $("#Euro").html(content_Euro);
 
     let content_Friendlies = getContent_item("Friendlies", data_Friendlies);
     $("#Friendlies").html(content_Friendlies);
+
+    let content_WorldCup = getContent_item(
+        "World Cup",
+        data_WorldCup
+    );
+    $("#WorldCup").html(content_WorldCup);
 
     let content_WorldCupQualEuro = getContent_item(
         "World Cup Qualification - Europe",
@@ -261,12 +275,6 @@ function appendContent(data) {
         data_WorldCupQualNA
     );
     $("#WorldCupQualNA").html(content_WorldCupQualNA);
-
-    let content_WorldCup = getContent_item(
-        "World Cup",
-        data_WorldCup
-    );
-    $("#WorldCup").html(content_WorldCup);
 
     let content_WorldCupQualSA = getContent_item(
         "World Cup Qualification - South America",
@@ -397,6 +405,29 @@ function appendContent(data) {
     );
     $("#Portugal_PrimeiraLiga").html(content_PrimeiraLiga);
 }
+let formattedDate = (time, timezone) => {
+    let dateTime = new Date(time * 1000);
+    let gameTime = String(dateTime).slice(15, 21);
+    let gameTimeHour = Number(gameTime.slice(1, 3));
+    let gameTimeMinute = gameTime.slice(4);
+    if (gameTimeMinute === 0){
+        gameTimeMinute = "00";
+    }
+    if (timezone === "PT") {
+        gameTimeHour -= 3;
+    } else if (timezone === "MT"){
+        gameTimeHour -= 2;
+    } else if (timezone === "CT") {
+        gameTimeHour -= 1;
+    }
+    gameTime = `${gameTimeHour}:${gameTimeMinute}`;
+    return gameTime;
+}
+
+function getTimezoneUpdate() {
+    localStorage["timezoneCache"] = $('#timezone').find(":selected").val();
+    getContent();
+}
 
 function getContent_item(league_name, data) {
     if (data.length === 0) {
@@ -411,14 +442,10 @@ function getContent_item(league_name, data) {
         let goals_HomeTeam = e.goals.home == null ? "?" : e.goals.home;
         let goals_AwayTeam = e.goals.away == null ? "?" : e.goals.away;
         let gameDate = e.fixture.timestamp;
-        let formattedDate = (time) => {
-            let epoch = time;
-            let dateTime = new Date(epoch * 1000);
-            return String(dateTime).slice(15, 21);
-        }
         let gameTime;
+        let timezone = localStorage["timezoneCache"] || $('#timezone').find(":selected").val();
         if (e.fixture.status.short === "NS") {
-            gameTime = formattedDate(gameDate) + "&nbsp;";
+            gameTime = formattedDate(gameDate, timezone) + "&nbsp;";
         } else if (e.fixture.status.short === "FT") {
             gameTime = e.fixture.status.short;
         } else if (e.fixture.status.short === "AET") {
@@ -542,6 +569,13 @@ function listCheck() {
         $("#friendliesCheckbox").removeClass("noContentList");
         var friendliesEmpty = false;
     }
+    if ($("#WorldCup").is(":empty")) {
+        $("#worldcupCheckbox").addClass("noContentList");
+        var worldCupEmpty = true;
+    } else {
+        $("#worldcupCheckbox").removeClass("noContentList");
+        var worldCupEmpty = false;
+    }
     if (
         $("#WorldCupQualAfrica").is(":empty") &&
         $("#WorldCupQualEuro").is(":empty") &&
@@ -549,10 +583,10 @@ function listCheck() {
         $("#WorldCupQualSA").is(":empty") &&
         $("#WorldCupQualNA").is(":empty")
     ) {
-        $("#worldcupCheckbox").addClass("noContentList");
+        $("#worldcupCheckboxQual").addClass("noContentList");
         var worldCupQualEmpty = true;
     } else {
-        $("#worldcupCheckbox").removeClass("noContentList");
+        $("#worldcupCheckboxQual").removeClass("noContentList");
         var worldCupQualEmpty = false;
     }
     if (friendliesEmpty && worldCupQualEmpty) {
