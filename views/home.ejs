@@ -25,14 +25,14 @@
                                 src="/images/world.png"
                                 class="league-image"
                                 alt="World flag"></li>
+                    <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="WorldCup" checked/>
+                        World Cup
+                    </li>
                     <li id="friendliesCheckbox"><input type="checkbox" name="league-type" value="Friendlies" checked/>
                         International Friendlies
                     </li>
                     <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="WorldCupQual" checked/>
                         World Cup Qualification
-                    </li>
-                    <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="WorldCup" checked/>
-                        World Cup
                     </li>
                     <li id="europeHeader" class="dropdown-header">Europe<img
                                 src="https://media.api-sports.io/flags/eu.svg"
@@ -144,7 +144,8 @@
             </script>
             <div id="Euro" class="Euro">
             </div>
-            <div id="WorldCup" class="WorldCup"></div>
+            <div id="WorldCup" class="WorldCupQual">
+            </div>
             <div id="Friendlies" class="Friendlies">
             </div>
             <div id="WorldCupQualEuro" class="WorldCupQual">
@@ -240,6 +241,6 @@
 
 <%- include('footerHome.ejs'); %>
 <!-- Homejs -->
-<script type="text/javascript" src="home.min.js"></script>
+<script type="text/javascript" src="dev/home.js"></script>
 <script type="text/javascript" src="notify.min.js"></script>
 </body>
