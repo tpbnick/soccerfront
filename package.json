@@ -17,13 +17,15 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
-    "express": "^4.17.1",
+    "express": "^4.18.1",
     "fetch": "^1.1.0",
     "mongoose": "^5.10.10",
     "node-fetch": "^2.6.6",
     "nodemon": "^2.0.16",
     "require": "^0.4.4",
-    "serve-favicon": "^2.5.0"
+    "run": "^1.4.0",
+    "serve-favicon": "^2.5.0",
+    "start": "^5.1.0"
   },
   "devDependencies": {
     "eslint": "^8.7.0"

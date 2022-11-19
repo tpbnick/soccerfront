@@ -7,22 +7,20 @@
         <div class="card-header" style="text-align: center;">
             <h2>Live Scores</h2>
         </div>
-
         <div class="card-body">
             <div class="date_card">
                 <em class="fas fa-angle-double-left" id="back_day" style="padding-right: 5px; cursor: pointer;"></em>
                 <input type="date" id="date_list" class="select-list" tabindex="1" min="2018-01-01" max="2023-01-01">
                 <em class="fas fa-angle-double-right" id="forward_day" style="padding-left: 5px; cursor: pointer;"></em>
                 <span class="refreshIconHome"><em class="fas fa-sync-alt" id="refresh"
-                                                 style="cursor: pointer;"></em></span>
+                                                  style="cursor: pointer;"></em></span>
             </div>
-
             <div id="list1" class="dropdown-check-list" tabindex="2"
                  style="margin-left: 75%;margin-top: -70px;position: absolute;background-color: #fff;">
                 <span class="anchor">Choose Leagues</span>
                 <ul class="items">
-<!--                    <li id="topFive"><input type="checkbox" name="league-type" value="topFive" unchecked/>-->
-<!--                        Only Top 5 Leagues</li>-->
+                    <!--                    <li id="topFive"><input type="checkbox" name="league-type" value="topFive" unchecked/>-->
+                    <!--                        Only Top 5 Leagues</li>-->
                     <li id="worldHeader" class="dropdown-header">World<img
                                 src="/images/world.png"
                                 class="league-image"
@@ -32,6 +30,9 @@
                     </li>
                     <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="WorldCupQual" checked/>
                         World Cup Qualification
+                    </li>
+                    <li id="worldcupCheckbox"><input type="checkbox" name="league-type" value="WorldCup" checked/>
+                        World Cup
                     </li>
                     <li id="europeHeader" class="dropdown-header">Europe<img
                                 src="https://media.api-sports.io/flags/eu.svg"
@@ -143,6 +144,7 @@
             </script>
             <div id="Euro" class="Euro">
             </div>
+            <div id="WorldCup" class="WorldCup"></div>
             <div id="Friendlies" class="Friendlies">
             </div>
             <div id="WorldCupQualEuro" class="WorldCupQual">
@@ -238,6 +240,6 @@
 
 <%- include('footerHome.ejs'); %>
 <!-- Homejs -->
-<script type="text/javascript" src="dev/home.js"></script>
+<script type="text/javascript" src="home.min.js"></script>
 <script type="text/javascript" src="notify.min.js"></script>
 </body>
