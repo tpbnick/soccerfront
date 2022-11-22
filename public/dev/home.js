@@ -581,7 +581,8 @@ function listCheck() {
         $("#WorldCupQualEuro").is(":empty") &&
         $("#WorldCupQualAsia").is(":empty") &&
         $("#WorldCupQualSA").is(":empty") &&
-        $("#WorldCupQualNA").is(":empty")
+        $("#WorldCupQualNA").is(":empty") &&
+        $("#WorldCup").is(":empty")
     ) {
         $("#worldcupCheckboxQual").addClass("noContentList");
         var worldCupQualEmpty = true;
