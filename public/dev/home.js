@@ -581,8 +581,7 @@ function listCheck() {
         $("#WorldCupQualEuro").is(":empty") &&
         $("#WorldCupQualAsia").is(":empty") &&
         $("#WorldCupQualSA").is(":empty") &&
-        $("#WorldCupQualNA").is(":empty") &&
-        $("#WorldCup").is(":empty")
+        $("#WorldCupQualNA").is(":empty")
     ) {
         $("#worldcupCheckboxQual").addClass("noContentList");
         var worldCupQualEmpty = true;
@@ -590,7 +589,7 @@ function listCheck() {
         $("#worldcupCheckboxQual").removeClass("noContentList");
         var worldCupQualEmpty = false;
     }
-    if (friendliesEmpty && worldCupQualEmpty) {
+    if (friendliesEmpty && worldCupQualEmpty && worldCupEmpty) {
         $("#worldHeader").addClass("noContentList");
         var worldEmpty = true;
     } else {
@@ -836,6 +835,7 @@ function listCheck() {
     // check for checkboxes
     if (
         worldEmpty &&
+        worldCupEmpty &&
         euroEmpty &&
         englandEmpty &&
         germanyEmpty &&
